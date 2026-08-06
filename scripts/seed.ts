@@ -234,60 +234,78 @@ async function seed() {
           buttonLink: "/contact",
           order: 1,
         },
-        {
-          key: "meet",
-          title: "Experience that serves.",
-          subtitle: "Meet Shinwary",
-          body: "Like many newcomers, Shinwary rebuilt his life in Canada from the beginning. That journey shaped a practical leader grounded in perseverance, responsibility and respect for community.",
+                {
+          key: "story",
+          title: "From newcomer to neighbour.",
+          subtitle: "His Story",
+          body: "Shinwary rebuilt his life in Canada with hard work, education and a deep belief that public service should be practical — not political theatre.\n\nRaised with respect for community and responsibility, he chose Oshawa as home. Ward 1 is where his family lives, where neighbours become friends, and where decisions at city hall should reflect everyday life.",
           image: "/images/candidate-podium.jpg",
           order: 2,
+        },
+        {
+          key: "timeline",
+          title: "Experience that earns trust.",
+          subtitle: "The path here",
+          body: "A record of education, leadership and community — not slogans.",
+          order: 3,
           items: [
             {
               title: "Education",
-              body: "Environmental Management and Paralegal education.",
+              subtitle: "Built a foundation in service",
+              body: "Environmental Management and Paralegal studies — training grounded in policy, compliance and real-world problem solving.",
             },
             {
-              title: "Experience",
-              body: "More than 15 years serving Canadian communities.",
+              title: "15+ Years",
+              subtitle: "Led across sectors",
+              body: "Project management, budgeting and team leadership in government, non-profit and private organizations across Canada.",
             },
             {
-              title: "Leadership",
-              body: "Government, non-profit and private-sector project and budget experience.",
+              title: "Community",
+              subtitle: "Showed up for neighbours",
+              body: "Volunteering, advocacy and listening sessions — building trust block by block in North Oshawa.",
             },
             {
-              title: "Why He Is Running",
-              body: "Canada gave his family opportunity. Now he is ready to give back.",
+              title: "2026",
+              subtitle: "Ready to serve Ward 1",
+              body: "Running to bring visible representation, responsible spending and a councillor who reports back every month.",
+            },
+          ],
+        },
+        {
+          key: "values",
+          title: "Principles for Ward 1.",
+          subtitle: "What guides him",
+          body: "How Shinwary will show up as your councillor — every day, not just at election time.",
+          order: 4,
+          items: [
+            {
+              title: "Service First",
+              body: "Politics should solve problems — not create them. Ward 1 deserves results.",
+            },
+            {
+              title: "Accountability",
+              body: "Open books, honest communication and decisions you can see in your neighbourhood.",
+            },
+            {
+              title: "Monthly Updates",
+              body: "Clear reports online and in the community so you always know what's happening.",
+            },
+            {
+              title: "Practical Leadership",
+              body: "Experience managing budgets, projects and teams — skills that translate to council.",
             },
           ],
         },
         {
           key: "quote",
           title: "15+",
-          subtitle: "Years",
-          body: "Canada gave my family opportunity. Now it’s my turn to give back.",
+          subtitle: "Years of service",
+          body: "Canada gave my family opportunity. Now it's my turn to give back — with the same perseverance that brought us here.",
           buttonLabel: "— A. Salam Shinwary",
-          order: 3,
+          order: 5,
         },
-        {
-          key: "commitment",
-          title: "You should always know what your councillor is doing.",
-          order: 4,
-          items: [
-            {
-              title: "Visible & Accessible",
-              body: "Easy to reach and active in the community.",
-            },
-            {
-              title: "Regular Updates",
-              body: "Clear monthly updates online and in neighbourhoods.",
-            },
-            {
-              title: "Transparent & Accountable",
-              body: "Honest decisions, open communication and measurable progress.",
-            },
-          ],
-        },
-      ],
+
+],
     },
     {
       slug: "vision",
@@ -305,32 +323,36 @@ async function seed() {
           buttonLink: "/contact",
           order: 1,
         },
-        {
-          key: "priorities",
-          title: "A Practical Plan for Ward 1",
-          body: "Safer streets. Responsible spending. Stronger neighbourhood services.",
+                {
+          key: "intro",
+          title: "Leadership that listens first.",
+          subtitle: "Our approach",
+          body: "Ward 1 doesn't need more promises — it needs a councillor who understands budgets, delivers projects and stays accountable between elections.\n\nShinwary's plan is built on four practical priorities backed by 15+ years of project and budget experience. Every proposal is measured against one question: does this improve everyday life in North Oshawa?",
           order: 2,
         },
         {
-          key: "commitment",
-          title: "You should always know what your councillor is doing.",
+          key: "approach",
+          title: "Listen. Plan. Deliver.",
+          subtitle: "How we'll work",
+          body: "A simple process — because good governance shouldn't be complicated for residents.",
           order: 3,
           items: [
             {
-              title: "Visible & Accessible",
-              body: "Easy to reach and active in the community.",
+              title: "Listen",
+              body: "Door knocks, community meetings and direct outreach — priorities start with residents, not consultants.",
             },
             {
-              title: "Regular Updates",
-              body: "Clear monthly updates online and in neighbourhoods.",
+              title: "Plan",
+              body: "Translate concerns into actionable motions with timelines, costs and measurable outcomes.",
             },
             {
-              title: "Transparent & Accountable",
-              body: "Honest decisions, open communication and measurable progress.",
+              title: "Deliver",
+              body: "Follow through publicly. Report wins and setbacks honestly so neighbours stay informed.",
             },
           ],
         },
-      ],
+
+],
     },
     {
       slug: "ward-1",
@@ -406,42 +428,94 @@ async function seed() {
           buttonLink: "/contact",
           order: 1,
         },
-        {
-          key: "community",
-          title: "Rooted in Community.",
-          subtitle: "Ward 1 First",
+                {
+          key: "intro",
+          title: "Ward 1 is built on neighbours.",
+          subtitle: "Why it matters",
+          body: "Strong communities aren't built at city hall — they're built at school gates, block parties and kitchen-table conversations.\n\nShinwary has spent years showing up: listening to parents on student transportation, advocating for Conlin Road fixes and partnering with local groups. As councillor, that same presence becomes your voice in every council meeting.",
           order: 2,
+        },
+        {
+          key: "gallery",
+          title: "Moments that matter.",
+          subtitle: "In the community",
+          order: 3,
           items: [
             {
-              title: "Community",
-              body: "Proud to celebrate diversity and support our local traditions.",
+              title: "Celebrating together",
+              subtitle: "Events",
+              body: "Supporting local traditions and the diversity that makes North Oshawa strong.",
               image: "/images/community-1.jpg",
             },
             {
-              title: "Collaboration",
-              body: "Working together to understand challenges and find solutions.",
+              title: "Working with partners",
+              subtitle: "Collaboration",
+              body: "Meeting with residents, schools and community leaders to understand real challenges.",
               image: "/images/community-2.jpg",
             },
             {
-              title: "Action",
-              body: "Partnering with community groups to strengthen Ward 1.",
+              title: "Taking action",
+              subtitle: "Advocacy",
+              body: "Turning conversations into advocacy — from road safety to parks and green space.",
               image: "/images/community-3.jpg",
             },
           ],
         },
         {
           key: "advocacy",
-          title: "Local priorities",
-          order: 3,
+          title: "Issues we're fighting for.",
+          body: "These aren't abstract policy goals — they're conversations Shinwary has already started with Ward 1 residents.",
+          order: 4,
           items: [
-            { title: "Conlin Road improvements" },
-            { title: "Student transportation concerns" },
-            { title: "Safer routes for children" },
-            { title: "Parks and green spaces" },
-            { title: "Collaboration with schools and community partners" },
+            {
+              title: "Conlin Road improvements",
+              body: "Pushing for safer, smoother commutes on one of Ward 1's busiest corridors.",
+            },
+            {
+              title: "Student transportation",
+              body: "Working with families and schools on bus routes, safety and reliable service.",
+            },
+            {
+              title: "Safer routes for children",
+              body: "Better crossings, lighting and traffic calming near schools and parks.",
+            },
+            {
+              title: "Parks & green spaces",
+              body: "Protecting and improving the places where neighbours gather and kids play.",
+            },
+            {
+              title: "School partnerships",
+              body: "Connecting council decisions with what families and educators see every day.",
+            },
+            {
+              title: "Neighbourhood listening",
+              body: "Regular ward meetings so priorities come from residents — not top-down plans.",
+            },
           ],
         },
-      ],
+        {
+          key: "involve",
+          title: "Be part of the movement.",
+          subtitle: "Your turn",
+          body: "Campaigns are built one conversation at a time. Here's how you can help.",
+          order: 5,
+          items: [
+            {
+              title: "Volunteer",
+              body: "Help with events, door knocking or community outreach in your area.",
+            },
+            {
+              title: "Share your story",
+              body: "Tell us what matters on your street — we're building the ward plan together.",
+            },
+            {
+              title: "Stay connected",
+              body: "Follow updates and invite neighbours to join the conversation for Ward 1.",
+            },
+          ],
+        },
+
+],
     },
     {
       slug: "contact",

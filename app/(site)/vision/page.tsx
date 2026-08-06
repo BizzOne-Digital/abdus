@@ -1,7 +1,6 @@
 import { PageHero } from "@/components/home/PageHero";
 import { accentLastWord } from "@/lib/accentTitle";
-import { PrioritySection } from "@/components/home/PrioritySection";
-import { CommitmentSection } from "@/components/home/CommitmentSection";
+import { VisionPageSections } from "@/components/pages/vision/VisionPageSections";
 import { getCmsPage, getCmsPriorities, sectionByKey } from "@/lib/cms";
 
 export default async function VisionPage() {
@@ -21,17 +20,17 @@ export default async function VisionPage() {
           hero?.body ||
           "Safer streets. Responsible spending. Stronger neighbourhood services."
         }
-        image={hero?.image}
+        image={hero?.image || "/images/hero-bg.jpg"}
         ctaHref={hero?.buttonLink || "/contact"}
         ctaLabel={hero?.buttonLabel || "Join the Campaign"}
         withWave
-        waveColor="#06152f"
+        waveColor="#ffffff"
       />
-      <PrioritySection
-        heading={sectionByKey(sections, "priorities")}
+      <VisionPageSections
+        intro={sectionByKey(sections, "intro")}
         priorities={priorities}
+        approach={sectionByKey(sections, "approach")}
       />
-      <CommitmentSection data={sectionByKey(sections, "commitment")} />
     </>
   );
 }

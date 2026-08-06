@@ -1,6 +1,6 @@
 import { PageHero } from "@/components/home/PageHero";
 import { accentLastWord } from "@/lib/accentTitle";
-import { CommunitySection } from "@/components/home/CommunitySection";
+import { CommunityPageSections } from "@/components/pages/community/CommunityPageSections";
 import { getCmsPage, sectionByKey } from "@/lib/cms";
 
 export default async function CommunityPage() {
@@ -21,11 +21,13 @@ export default async function CommunityPage() {
         ctaHref={hero?.buttonLink || "/contact"}
         ctaLabel={hero?.buttonLabel || "Get Involved"}
         withWave
-        waveColor="#06152f"
+        waveColor="#ffffff"
       />
-      <CommunitySection
-        community={sectionByKey(sections, "community")}
+      <CommunityPageSections
+        intro={sectionByKey(sections, "intro")}
+        gallery={sectionByKey(sections, "gallery")}
         advocacy={sectionByKey(sections, "advocacy")}
+        involve={sectionByKey(sections, "involve")}
       />
     </>
   );
