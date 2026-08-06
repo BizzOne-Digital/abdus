@@ -29,7 +29,6 @@ export function PageHero({
       <div className="page-hero__bg" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={image || "/images/hero-bg.jpg"} alt="" />
-        <div className="page-hero__shade" />
       </div>
       <div className="container page-hero__inner">
         <p className="page-hero__eyebrow">{eyebrow}</p>
@@ -55,4 +54,3 @@ export function PageHero({
     </section>
   );
 }
-
