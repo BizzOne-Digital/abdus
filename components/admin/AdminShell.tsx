@@ -9,9 +9,6 @@ const NAV: { href: string; label: string; exact?: boolean }[] = [
   { href: "/admin", label: "Dashboard", exact: true },
   { href: "/admin/pages", label: "Pages" },
   { href: "/admin/priorities", label: "Services" },
-  { href: "/admin/gallery", label: "Gallery" },
-  { href: "/admin/testimonials", label: "Testimonials" },
-  { href: "/admin/faqs", label: "FAQs" },
   { href: "/admin/settings", label: "Settings" },
 ];
 

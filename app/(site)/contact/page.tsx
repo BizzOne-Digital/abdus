@@ -1,43 +1,92 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { connectDB } from "@/lib/db";
-import { Page } from "@/models/Page";
-import { Settings } from "@/models/Settings";
+import { PageHero } from "@/components/home/PageHero";
+import { accentLastWord } from "@/lib/accentTitle";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { LiquidGlass } from "@/components/LiquidGlass";
+import { IconMail, IconPhone } from "@/components/icons";
+import {
+  getCmsPage,
+  getCmsSettings,
+  sectionByKey,
+} from "@/lib/cms";
+import "./contact.css";
 
 export default async function ContactPage() {
-  await connectDB();
-  const page: any = await Page.findOne({ slug: "contact" }).lean();
-  const settings: any = await Settings.findOne({ key: "site" }).lean();
-  const hero = (page?.sections || []).find((s: any) => s.key === "hero");
+  const [page, settings] = await Promise.all([
+    getCmsPage("contact"),
+    getCmsSettings(),
+  ]);
+  const sections = page?.sections || [];
+  const hero = sectionByKey(sections, "hero");
+  const details = sectionByKey(sections, "details");
+  const involve = sectionByKey(sections, "involve");
+  const email = settings.email || "salam.jan111@gmail.com";
+  const phone = settings.phone || "416 419 2457";
+  const tel = String(phone).replace(/\s/g, "");
 
   return (
     <>
-      <section className="cms-hero">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="bg" src={hero?.image || "/images/hero-bg.jpg"} alt="" />
-        <div className="container cms-hero__inner">
-          <h1>{hero?.title || "Contact"}</h1>
-          <p>{hero?.body}</p>
-        </div>
-      </section>
-      <section className="cms-section">
-        <div className="container cms-card-grid">
-          <LiquidGlass className="cms-card" as="article">
-            <h3>Email</h3>
-            <a href={`mailto:${settings?.email}`}>{settings?.email}</a>
+      <PageHero
+        eyebrow={hero?.subtitle || "Contact"}
+        title={accentLastWord(hero?.title || "Let’s Move Ward 1 Forward")}
+        lead={
+          hero?.body ||
+          "Your voice. Your neighbourhood. Your future. Reach out and join the campaign."
+        }
+        image={hero?.image}
+        ctaHref={hero?.buttonLink || `mailto:${email}`}
+        ctaLabel={hero?.buttonLabel || "Email Shinwary"}
+      />
+
+      <section
+        className="section contact-page"
+        aria-labelledby="contact-details-title"
+      >
+        <div className="container contact-page__grid">
+          <LiquidGlass as="article" className="contact-card">
+            <h2 id="contact-details-title">
+              {details?.title || "Campaign Contact"}
+            </h2>
+            <p>
+              {details?.body ||
+                "Questions about Ward 1 priorities, volunteering, or the campaign? Get in touch directly."}
+            </p>
+            <ul className="contact-card__list">
+              <li>
+                <a href={`mailto:${email}`}>
+                  <IconMail size={20} />
+                  <span>{email}</span>
+                </a>
+              </li>
+              <li>
+                <a href={`tel:${tel.startsWith("+") ? tel : `+1${tel}`}`}>
+                  <IconPhone size={20} />
+                  <span>{phone}</span>
+                </a>
+              </li>
+            </ul>
           </LiquidGlass>
-          <LiquidGlass className="cms-card" as="article">
-            <h3>Phone</h3>
-            <a href={`tel:${String(settings?.phone || "").replace(/\s/g, "")}`}>
-              {settings?.phone}
+
+          <LiquidGlass as="article" className="contact-card">
+            <h2>{involve?.title || "Get Involved"}</h2>
+            <p>
+              {involve?.body ||
+                "Help move Ward 1 forward — share the campaign, talk with neighbours, and stay connected for updates."}
+            </p>
+            <a
+              href={involve?.buttonLink || `mailto:${email}`}
+              className="btn btn--primary btn--pill"
+            >
+              {involve?.buttonLabel || "Join the Campaign"}
             </a>
           </LiquidGlass>
-          <LiquidGlass className="cms-card" as="article">
-            <h3>Location</h3>
-            <p style={{ color: "var(--light-blue)" }}>{settings?.address}</p>
-          </LiquidGlass>
         </div>
       </section>
+
+      <ClosingCTA
+        email={email}
+        phone={phone}
+        data={sectionByKey(sections, "closing")}
+      />
     </>
   );
 }

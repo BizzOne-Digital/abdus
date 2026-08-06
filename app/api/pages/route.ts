@@ -5,7 +5,11 @@ import { Page } from "@/models/Page";
 
 export async function GET() {
   await connectDB();
-  const pages = await Page.find().sort({ title: 1 }).lean();
+  const pages = await Page.find({
+    slug: { $nin: ["gallery", "testimonials", "faqs"] },
+  })
+    .sort({ title: 1 })
+    .lean();
   return ok(pages);
 }
 

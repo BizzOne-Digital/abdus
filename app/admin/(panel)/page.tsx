@@ -6,9 +6,6 @@ import Link from "next/link";
 type Stats = {
   pages: number;
   priorities: number;
-  gallery: number;
-  testimonials: number;
-  faqs: number;
 };
 
 export default function AdminDashboardPage() {
@@ -38,9 +35,6 @@ export default function AdminDashboardPage() {
           [
             ["Pages", stats?.pages],
             ["Priorities", stats?.priorities],
-            ["Gallery", stats?.gallery],
-            ["Testimonials", stats?.testimonials],
-            ["FAQs", stats?.faqs],
           ] as const
         ).map(([label, value]) => (
           <div className="stat-card" key={label}>
@@ -58,9 +52,6 @@ export default function AdminDashboardPage() {
           </Link>
           <Link className="btn-admin" href="/admin/priorities">
             Edit priorities
-          </Link>
-          <Link className="btn-admin" href="/admin/gallery">
-            Manage gallery
           </Link>
           <Link className="btn-admin" href="/admin/settings">
             Settings

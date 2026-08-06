@@ -1,6 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { notFound } from "next/navigation";
 import { connectDB } from "@/lib/db";
 import { Page } from "@/models/Page";
+
+const RESERVED = new Set([
+  "about",
+  "vision",
+  "ward-1",
+  "community",
+  "contact",
+  "gallery",
+  "testimonials",
+  "faqs",
+  "priorities",
+  "admin",
+]);
 
 function getSection(sections: any[], key: string) {
   return sections.find((s) => s.key === key);
@@ -12,15 +26,12 @@ export default async function CmsPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  if (RESERVED.has(slug)) notFound();
+
   await connectDB();
   const page: any = await Page.findOne({ slug }).lean();
-  if (!page) {
-    return (
-      <div className="container cms-section">
-        <h1>Page not found</h1>
-      </div>
-    );
-  }
+  if (!page) notFound();
+
   const sections = page.sections || [];
   const hero = getSection(sections, "hero") || sections[0];
 
@@ -43,11 +54,11 @@ export default async function CmsPage({
           {sections
             .filter((s: any) => s.key !== "hero")
             .map((section: any, i: number) => (
-              <article
-                key={String(section.key) + i}
-                className="liquid-glass"
-              >
-                <h2 className="section__title" style={{ fontSize: "clamp(1.35rem, 5vw, 1.8rem)" }}>
+              <article key={String(section.key) + i} className="liquid-glass">
+                <h2
+                  className="section__title"
+                  style={{ fontSize: "clamp(1.35rem, 5vw, 1.8rem)" }}
+                >
                   {section.title || ""}
                 </h2>
                 {section.body ? (

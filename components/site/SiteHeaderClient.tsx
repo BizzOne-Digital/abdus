@@ -14,9 +14,6 @@ const NAV = [
   { href: "/vision", label: "Vision" },
   { href: "/ward-1", label: "Ward 1" },
   { href: "/community", label: "Community" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/testimonials", label: "Testimonials" },
-  { href: "/faqs", label: "FAQs" },
   { href: "/contact", label: "Contact" },
 ];
 

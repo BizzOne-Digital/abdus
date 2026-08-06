@@ -27,11 +27,8 @@ Default admin:
 
 ## Admin sidebar
 - Dashboard
-- Pages (home, about, vision, ward-1, community, gallery, testimonials, faqs, contact) — section-by-section + images
+- Pages (home, about, vision, ward-1, community, contact) — section-by-section + images
 - Priorities / Services (add/edit/delete; card tab + detail-page tab)
-- Gallery (categories + images)
-- Testimonials
-- FAQs
 - Settings (email/phone/social/logo — updates footer + contact)
 
 ## Notes

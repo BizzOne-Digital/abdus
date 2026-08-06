@@ -26,7 +26,7 @@ export default function AdminPagesPage() {
       <div className="admin-header">
         <div>
           <h1>Pages</h1>
-          <p>Edit every public page section by section.</p>
+          <p>Edit every public page — content matches the live website.</p>
         </div>
       </div>
       <div className="admin-card">

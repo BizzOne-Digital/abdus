@@ -1,0 +1,17 @@
+export const SECTION_LABELS: Record<string, string> = {
+  hero: "Hero / top banner",
+  "hero-meet": "Hero slide — Meet Shinwary",
+  "hero-plan": "Hero slide — Plan",
+  priorities: "Priorities section heading",
+  meet: "Meet Shinwary section",
+  quote: "Quote / 15+ years",
+  community: "Community gallery",
+  advocacy: "Local priorities list",
+  ward1: "Ward 1 section",
+  commitment: "Commitment cards",
+  closing: "Closing CTA",
+  details: "Contact details card",
+  involve: "Get Involved card",
+  story: "Story section",
+  map: "Map section",
+};

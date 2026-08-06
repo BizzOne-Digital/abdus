@@ -5,9 +5,6 @@ import { connectDB } from "../lib/db";
 import { AdminUser } from "../models/AdminUser";
 import { Page } from "../models/Page";
 import { Priority } from "../models/Priority";
-import { GalleryCategory } from "../models/GalleryCategory";
-import { Testimonial } from "../models/Testimonial";
-import { Faq } from "../models/Faq";
 import { Settings } from "../models/Settings";
 
 async function seed() {
@@ -34,6 +31,10 @@ async function seed() {
       siteName: "Vote Shinwary",
       tagline:
         "Strong leadership. Better Oshawa. A practical voice for Ward 1.",
+      facebook: "",
+      instagram: "",
+      twitter: "",
+      youtube: "",
     },
     { upsert: true },
   );
@@ -42,45 +43,186 @@ async function seed() {
     {
       slug: "home",
       title: "Home",
+      seoDescription:
+        "Vote A. Salam Shinwary for City Councillor — Ward 1, Oshawa.",
       sections: [
         {
           key: "hero",
-          title: "STRONG LEADERSHIP. BETTER OSHAWA.",
+          title: "Strong Leadership. Better Oshawa.",
           subtitle: "Listening. Leading. Delivering.",
-          body: "CITY COUNCILLOR · WARD 1",
-          image: "/images/candidate-hero.png",
+          body: "City Councillor · Ward 1",
+          image: "/images/hero-bg.jpg",
           buttonLabel: "Our Priorities",
           buttonLink: "/vision",
           order: 1,
+          items: [
+            {
+              key: "photo",
+              title: "Candidate photo",
+              image: "/images/candidate-hero.png",
+            },
+            {
+              key: "signature",
+              title: "Vote A. Salam Shinwary",
+              body: "A Strong Voice for Ward 1",
+            },
+          ],
+        },
+        {
+          key: "hero-meet",
+          title: "Meet & Elect Shinwary",
+          subtitle: "Candidate Profile",
+          body: "Experience shaped by service. Leadership focused on Ward 1.",
+          image: "/images/candidate-hero.png",
+          buttonLabel: "Meet Shinwary",
+          buttonLink: "/about",
+          order: 2,
+          items: [
+            { title: "15+ Years of Service" },
+            { title: "Environmental Management" },
+            { title: "Community Leadership" },
+          ],
+        },
+        {
+          key: "hero-plan",
+          title: "A Practical Plan for Ward 1",
+          subtitle: "Priorities",
+          body: "Safer streets. Responsible spending. Stronger neighbourhood services.",
+          buttonLabel: "View the Plan",
+          buttonLink: "/vision",
+          order: 3,
         },
         {
           key: "priorities",
           title: "A Practical Plan for Ward 1",
           body: "Safer streets. Responsible spending. Stronger neighbourhood services.",
-          image: "/images/hero-bg.jpg",
-          order: 2,
+          order: 4,
+        },
+        {
+          key: "meet",
+          title: "Experience that serves.",
+          subtitle: "Meet Shinwary",
+          body: "Like many newcomers, Shinwary rebuilt his life in Canada from the beginning. That journey shaped a practical leader grounded in perseverance, responsibility and respect for community.",
+          image: "/images/candidate-podium.jpg",
+          order: 5,
+          items: [
+            {
+              title: "Education",
+              body: "Environmental Management and Paralegal education.",
+            },
+            {
+              title: "Experience",
+              body: "More than 15 years serving Canadian communities.",
+            },
+            {
+              title: "Leadership",
+              body: "Government, non-profit and private-sector project and budget experience.",
+            },
+            {
+              title: "Why He Is Running",
+              body: "Canada gave his family opportunity. Now he is ready to give back.",
+            },
+          ],
+        },
+        {
+          key: "quote",
+          title: "15+",
+          subtitle: "Years",
+          body: "Canada gave my family opportunity. Now it’s my turn to give back.",
+          buttonLabel: "— A. Salam Shinwary",
+          order: 6,
         },
         {
           key: "community",
-          title: "Rooted in Community",
-          body: "Showing up. Listening. Working together.",
-          image: "/images/community-1.jpg",
-          order: 3,
+          title: "Rooted in Community.",
+          subtitle: "Ward 1 First",
+          order: 7,
+          items: [
+            {
+              title: "Community",
+              body: "Proud to celebrate diversity and support our local traditions.",
+              image: "/images/community-1.jpg",
+            },
+            {
+              title: "Collaboration",
+              body: "Working together to understand challenges and find solutions.",
+              image: "/images/community-2.jpg",
+            },
+            {
+              title: "Action",
+              body: "Partnering with community groups to strengthen Ward 1.",
+              image: "/images/community-3.jpg",
+            },
+          ],
+        },
+        {
+          key: "advocacy",
+          title: "Local priorities",
+          order: 8,
+          items: [
+            { title: "Conlin Road improvements" },
+            { title: "Student transportation concerns" },
+            { title: "Safer routes for children" },
+            { title: "Parks and green spaces" },
+            { title: "Collaboration with schools and community partners" },
+          ],
+        },
+        {
+          key: "ward1",
+          title: "Ward 1 is Home",
+          body: "North Oshawa deserves visible representation, smart investment and a councillor who stays connected.",
+          image: "/images/ward1-map.svg",
+          order: 9,
+          items: [
+            {
+              title: "Safe Streets",
+              body: "Better roads, intersections, lighting and school routes.",
+            },
+            {
+              title: "Green Spaces",
+              body: "Protecting parks and creating welcoming community spaces.",
+            },
+            {
+              title: "Strong Services",
+              body: "Reliable neighbourhood services that improve everyday life.",
+            },
+          ],
+        },
+        {
+          key: "commitment",
+          title: "You should always know what your councillor is doing.",
+          order: 10,
+          items: [
+            {
+              title: "Visible & Accessible",
+              body: "Easy to reach and active in the community.",
+            },
+            {
+              title: "Regular Updates",
+              body: "Clear monthly updates online and in neighbourhoods.",
+            },
+            {
+              title: "Transparent & Accountable",
+              body: "Honest decisions, open communication and measurable progress.",
+            },
+          ],
         },
         {
           key: "closing",
-          title: "Let's move Ward 1 forward.",
+          title: "Let’s move Ward 1 forward.",
           subtitle: "Your voice. Your neighbourhood. Your future.",
-          image: "/images/hero-bg.jpg",
+          body: "Vote A. Salam Shinwary",
           buttonLabel: "Join the Campaign",
           buttonLink: "/contact",
-          order: 4,
+          order: 11,
         },
       ],
     },
     {
       slug: "about",
       title: "About",
+      seoDescription:
+        "Meet A. Salam Shinwary — experience shaped by service for Ward 1.",
       sections: [
         {
           key: "hero",
@@ -88,126 +230,266 @@ async function seed() {
           subtitle: "Meet Shinwary",
           body: "A practical leader shaped by service, perseverance and respect for community in Ward 1.",
           image: "/images/hero-bg.jpg",
+          buttonLabel: "Meet Shinwary",
+          buttonLink: "/contact",
           order: 1,
         },
         {
-          key: "story",
+          key: "meet",
           title: "Experience that serves.",
+          subtitle: "Meet Shinwary",
           body: "Like many newcomers, Shinwary rebuilt his life in Canada from the beginning. That journey shaped a practical leader grounded in perseverance, responsibility and respect for community.",
           image: "/images/candidate-podium.jpg",
           order: 2,
+          items: [
+            {
+              title: "Education",
+              body: "Environmental Management and Paralegal education.",
+            },
+            {
+              title: "Experience",
+              body: "More than 15 years serving Canadian communities.",
+            },
+            {
+              title: "Leadership",
+              body: "Government, non-profit and private-sector project and budget experience.",
+            },
+            {
+              title: "Why He Is Running",
+              body: "Canada gave his family opportunity. Now he is ready to give back.",
+            },
+          ],
         },
         {
           key: "quote",
-          title: "Featured quote",
-          body: "Canada gave my family opportunity. Now it's my turn to give back.",
-          image: "",
+          title: "15+",
+          subtitle: "Years",
+          body: "Canada gave my family opportunity. Now it’s my turn to give back.",
+          buttonLabel: "— A. Salam Shinwary",
           order: 3,
+        },
+        {
+          key: "commitment",
+          title: "You should always know what your councillor is doing.",
+          order: 4,
+          items: [
+            {
+              title: "Visible & Accessible",
+              body: "Easy to reach and active in the community.",
+            },
+            {
+              title: "Regular Updates",
+              body: "Clear monthly updates online and in neighbourhoods.",
+            },
+            {
+              title: "Transparent & Accountable",
+              body: "Honest decisions, open communication and measurable progress.",
+            },
+          ],
         },
       ],
     },
     {
       slug: "vision",
       title: "Vision",
+      seoDescription:
+        "A practical plan for Ward 1 — safer streets, responsible spending, stronger services.",
       sections: [
         {
           key: "hero",
           title: "A Practical Plan for Ward 1",
+          subtitle: "Vision",
           body: "Safer streets. Responsible spending. Stronger neighbourhood services.",
           image: "/images/hero-bg.jpg",
+          buttonLabel: "Join the Campaign",
+          buttonLink: "/contact",
           order: 1,
+        },
+        {
+          key: "priorities",
+          title: "A Practical Plan for Ward 1",
+          body: "Safer streets. Responsible spending. Stronger neighbourhood services.",
+          order: 2,
+        },
+        {
+          key: "commitment",
+          title: "You should always know what your councillor is doing.",
+          order: 3,
+          items: [
+            {
+              title: "Visible & Accessible",
+              body: "Easy to reach and active in the community.",
+            },
+            {
+              title: "Regular Updates",
+              body: "Clear monthly updates online and in neighbourhoods.",
+            },
+            {
+              title: "Transparent & Accountable",
+              body: "Honest decisions, open communication and measurable progress.",
+            },
+          ],
         },
       ],
     },
     {
       slug: "ward-1",
       title: "Ward 1",
+      seoDescription:
+        "Ward 1 is home — visible representation for North Oshawa.",
       sections: [
         {
           key: "hero",
           title: "Ward 1 is Home",
+          subtitle: "Ward 1 · Oshawa",
           body: "North Oshawa deserves visible representation, smart investment and a councillor who stays connected.",
           image: "/images/hero-bg.jpg",
+          buttonLabel: "Get Involved",
+          buttonLink: "/contact",
           order: 1,
         },
         {
-          key: "map",
-          title: "North Oshawa — Ward 1",
-          body: "Safe streets, green spaces and strong services.",
+          key: "ward1",
+          title: "Ward 1 is Home",
+          body: "North Oshawa deserves visible representation, smart investment and a councillor who stays connected.",
           image: "/images/ward1-map.svg",
           order: 2,
+          items: [
+            {
+              title: "Safe Streets",
+              body: "Better roads, intersections, lighting and school routes.",
+            },
+            {
+              title: "Green Spaces",
+              body: "Protecting parks and creating welcoming community spaces.",
+            },
+            {
+              title: "Strong Services",
+              body: "Reliable neighbourhood services that improve everyday life.",
+            },
+          ],
+        },
+        {
+          key: "commitment",
+          title: "You should always know what your councillor is doing.",
+          order: 3,
+          items: [
+            {
+              title: "Visible & Accessible",
+              body: "Easy to reach and active in the community.",
+            },
+            {
+              title: "Regular Updates",
+              body: "Clear monthly updates online and in neighbourhoods.",
+            },
+            {
+              title: "Transparent & Accountable",
+              body: "Honest decisions, open communication and measurable progress.",
+            },
+          ],
         },
       ],
     },
     {
       slug: "community",
       title: "Community",
+      seoDescription:
+        "Rooted in community — showing up and working together for Ward 1.",
       sections: [
         {
           key: "hero",
           title: "Rooted in Community",
+          subtitle: "Community",
           body: "Showing up. Listening. Working together for Ward 1.",
           image: "/images/hero-bg.jpg",
+          buttonLabel: "Get Involved",
+          buttonLink: "/contact",
           order: 1,
         },
-      ],
-    },
-    {
-      slug: "gallery",
-      title: "Gallery",
-      sections: [
         {
-          key: "hero",
-          title: "Campaign Gallery",
-          body: "Moments from Ward 1 — community, collaboration and action.",
-          image: "/images/hero-bg.jpg",
-          order: 1,
+          key: "community",
+          title: "Rooted in Community.",
+          subtitle: "Ward 1 First",
+          order: 2,
+          items: [
+            {
+              title: "Community",
+              body: "Proud to celebrate diversity and support our local traditions.",
+              image: "/images/community-1.jpg",
+            },
+            {
+              title: "Collaboration",
+              body: "Working together to understand challenges and find solutions.",
+              image: "/images/community-2.jpg",
+            },
+            {
+              title: "Action",
+              body: "Partnering with community groups to strengthen Ward 1.",
+              image: "/images/community-3.jpg",
+            },
+          ],
         },
-      ],
-    },
-    {
-      slug: "testimonials",
-      title: "Testimonials",
-      sections: [
         {
-          key: "hero",
-          title: "Voices from Ward 1",
-          body: "Neighbours sharing why visible, practical leadership matters.",
-          image: "/images/hero-bg.jpg",
-          order: 1,
-        },
-      ],
-    },
-    {
-      slug: "faqs",
-      title: "FAQs",
-      sections: [
-        {
-          key: "hero",
-          title: "Frequently Asked Questions",
-          body: "Clear answers about the campaign, priorities and how to get involved.",
-          image: "/images/hero-bg.jpg",
-          order: 1,
+          key: "advocacy",
+          title: "Local priorities",
+          order: 3,
+          items: [
+            { title: "Conlin Road improvements" },
+            { title: "Student transportation concerns" },
+            { title: "Safer routes for children" },
+            { title: "Parks and green spaces" },
+            { title: "Collaboration with schools and community partners" },
+          ],
         },
       ],
     },
     {
       slug: "contact",
       title: "Contact",
+      seoDescription: "Contact Vote Shinwary — join the Ward 1 campaign.",
       sections: [
         {
           key: "hero",
-          title: "Let's Move Ward 1 Forward",
+          title: "Let’s Move Ward 1 Forward",
+          subtitle: "Contact",
           body: "Your voice. Your neighbourhood. Your future. Reach out and join the campaign.",
           image: "/images/hero-bg.jpg",
+          buttonLabel: "Email Shinwary",
+          buttonLink: "mailto:salam.jan111@gmail.com",
           order: 1,
+        },
+        {
+          key: "details",
+          title: "Campaign Contact",
+          body: "Questions about Ward 1 priorities, volunteering, or the campaign? Get in touch directly.",
+          order: 2,
+        },
+        {
+          key: "involve",
+          title: "Get Involved",
+          body: "Help move Ward 1 forward — share the campaign, talk with neighbours, and stay connected for updates.",
+          buttonLabel: "Join the Campaign",
+          buttonLink: "mailto:salam.jan111@gmail.com",
+          order: 3,
+        },
+        {
+          key: "closing",
+          title: "Let’s move Ward 1 forward.",
+          subtitle: "Your voice. Your neighbourhood. Your future.",
+          body: "Vote A. Salam Shinwary",
+          buttonLabel: "Join the Campaign",
+          buttonLink: "/contact",
+          order: 4,
         },
       ],
     },
   ];
 
   for (const page of pages) {
-    await Page.findOneAndUpdate({ slug: page.slug }, page, { upsert: true });
+    await Page.findOneAndUpdate({ slug: page.slug }, page, {
+      upsert: true,
+      overwrite: true,
+    });
   }
 
   const priorities = [
@@ -218,6 +500,7 @@ async function seed() {
       cardImage: "/images/community-1.jpg",
       icon: "dollar",
       order: 1,
+      published: true,
       detailSections: [
         {
           key: "overview",
@@ -236,6 +519,7 @@ async function seed() {
       cardImage: "/images/community-2.jpg",
       icon: "shield",
       order: 2,
+      published: true,
       detailSections: [
         {
           key: "overview",
@@ -253,6 +537,7 @@ async function seed() {
       cardImage: "/images/community-3.jpg",
       icon: "home",
       order: 3,
+      published: true,
       detailSections: [
         {
           key: "overview",
@@ -270,6 +555,7 @@ async function seed() {
       cardImage: "/images/candidate-podium.jpg",
       icon: "people",
       order: 4,
+      published: true,
       detailSections: [
         {
           key: "overview",
@@ -283,106 +569,14 @@ async function seed() {
   ];
 
   for (const item of priorities) {
-    await Priority.findOneAndUpdate({ slug: item.slug }, item, { upsert: true });
+    await Priority.findOneAndUpdate({ slug: item.slug }, item, {
+      upsert: true,
+    });
   }
 
-  await GalleryCategory.findOneAndUpdate(
-    { slug: "community" },
-    {
-      name: "Community",
-      slug: "community",
-      description: "Celebrating diversity and local traditions.",
-      images: [
-        {
-          url: "/images/community-1.jpg",
-          alt: "Community event",
-          caption: "Community",
-          order: 1,
-        },
-      ],
-    },
-    { upsert: true },
-  );
-  await GalleryCategory.findOneAndUpdate(
-    { slug: "collaboration" },
-    {
-      name: "Collaboration",
-      slug: "collaboration",
-      description: "Working together on local challenges.",
-      images: [
-        {
-          url: "/images/community-2.jpg",
-          alt: "Collaboration meeting",
-          caption: "Collaboration",
-          order: 1,
-        },
-      ],
-    },
-    { upsert: true },
-  );
-  await GalleryCategory.findOneAndUpdate(
-    { slug: "action" },
-    {
-      name: "Action",
-      slug: "action",
-      description: "Partnering with community groups.",
-      images: [
-        {
-          url: "/images/community-3.jpg",
-          alt: "Community action",
-          caption: "Action",
-          order: 1,
-        },
-      ],
-    },
-    { upsert: true },
-  );
+  await Page.deleteMany({ slug: { $in: ["gallery", "testimonials", "faqs"] } });
 
-  const testimonials = [
-    {
-      name: "Ward 1 Resident",
-      role: "North Oshawa",
-      quote:
-        "We need a councillor who shows up, listens, and follows through for our neighbourhoods.",
-      image: "",
-      order: 1,
-    },
-    {
-      name: "Community Partner",
-      role: "Local Organization",
-      quote:
-        "Practical leadership and clear communication make a real difference in Ward 1.",
-      image: "",
-      order: 2,
-    },
-  ];
-  await Testimonial.deleteMany({});
-  await Testimonial.insertMany(testimonials);
-
-  const faqs = [
-    {
-      question: "Who is A. Salam Shinwary?",
-      answer:
-        "A. Salam Shinwary is a candidate for City Councillor in Ward 1, Oshawa, with more than 15 years serving Canadian communities.",
-      order: 1,
-    },
-    {
-      question: "What are the main priorities?",
-      answer:
-        "Responsible spending, safer roads, fair property taxes, and responsive service for Ward 1 residents.",
-      order: 2,
-    },
-    {
-      question: "How can I get involved?",
-      answer:
-        "Email salam.jan111@gmail.com or call 416 419 2457 to join the campaign.",
-      order: 3,
-    },
-  ];
-  await Faq.deleteMany({});
-  await Faq.insertMany(faqs);
-
-  console.log("Seed complete.");
+  console.log("Seed complete — admin content matches the live site.");
   console.log(`Admin login: ${email} / ${password}`);
   process.exit(0);
 }

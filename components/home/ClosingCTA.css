@@ -1,0 +1,132 @@
+.closing {
+  position: relative;
+  padding: clamp(3.5rem, 8vw, 6rem) 0 0;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      160deg,
+      #071b3b 0%,
+      #176bdb 38%,
+      #2b2b8f 68%,
+      #f15a3a 120%
+    );
+}
+
+.closing__glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 80%, rgba(255, 138, 61, 0.35), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 30%, rgba(141, 220, 255, 0.18), transparent 55%);
+  pointer-events: none;
+}
+
+.closing__skyline {
+  position: absolute;
+  inset: auto 0 0;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.closing__skyline img {
+  width: 100%;
+}
+
+.closing__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 3rem;
+}
+
+.closing__panel {
+  width: min(100%, 680px);
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  text-align: left;
+  --glass-bg: rgba(6, 21, 47, 0.35);
+}
+
+.closing__vote {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--light-blue);
+  margin-bottom: 0.75rem;
+}
+
+.closing__title {
+  font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+  text-transform: uppercase;
+  max-width: 14ch;
+  line-height: 1.02;
+}
+
+.closing__lead {
+  margin-top: 0.85rem;
+  color: var(--light-blue);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.closing__cta {
+  margin-top: 1.5rem;
+}
+
+.closing__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.closing__contacts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.closing__contacts a:hover,
+.closing__contacts a:focus-visible {
+  color: var(--light-blue);
+}
+
+@media (max-width: 640px) {
+  .closing {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .closing__inner {
+    justify-content: stretch;
+  }
+
+  .closing__panel {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .closing__title {
+    max-width: 100%;
+  }
+
+  .closing__cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .closing__contacts {
+    flex-direction: column;
+  }
+
+  .closing__contacts a span {
+    word-break: break-word;
+  }
+}

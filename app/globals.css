@@ -44,7 +44,9 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 24px);
-  overflow-x: clip;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -63,9 +65,10 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
+  width: 100%;
   max-width: 100%;
-  overflow-x: clip;
+  overflow-x: hidden;
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
@@ -133,8 +136,11 @@ p {
 }
 
 .container {
-  width: min(100% - 2.5rem, var(--max-width));
+  width: min(100% - 2rem, var(--max-width));
+  max-width: 100%;
   margin-inline: auto;
+  padding-inline: 0;
+  box-sizing: border-box;
 }
 
 @media (max-width: 640px) {
@@ -143,11 +149,12 @@ p {
   }
 
   .container {
-    width: min(100% - 1.25rem, var(--max-width));
+    width: min(100% - 1.5rem, var(--max-width));
   }
 
   .section {
-    padding: clamp(2.5rem, 8vw, 3.5rem) 0;
+    padding: clamp(2.25rem, 7vw, 3.25rem) 0;
+    overflow-x: hidden;
   }
 
   .section__title {
@@ -155,6 +162,10 @@ p {
   }
 
   .btn:hover {
+    transform: none;
+  }
+
+  .liquid-glass--hover:hover {
     transform: none;
   }
 }
@@ -375,12 +386,25 @@ p {
 .page-bg {
   background: linear-gradient(180deg, var(--midnight) 0%, var(--deep-navy) 40%, #061a3a 100%);
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
+}
+
+.page-bg > main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  min-width: 0;
 }
 
 .page-bg > main > .section,
 .page-bg > main > .meet-section,
-.page-bg > main > .closing {
+.page-bg > main > .closing,
+.page-bg > main > .hero,
+.page-bg > main > .page-hero {
   position: relative;
   z-index: 1;
+  max-width: 100%;
+  overflow-x: hidden;
 }
