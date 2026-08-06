@@ -2,16 +2,23 @@
   position: relative;
   background: transparent;
   margin-top: 0.5rem;
+  overflow: visible !important;
 }
 
 .meet-section__body {
   background: var(--ivory);
   color: var(--deep-navy);
   padding: clamp(1.25rem, 3vw, 2.25rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+  overflow: visible;
+}
+
+.meet-section__wave,
+.meet-section__wave-bottom {
+  display: block;
+  overflow: hidden;
 }
 
 .meet-section__wave-bottom {
-  display: block;
   margin-top: -1px;
 }
 
@@ -20,6 +27,7 @@
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(1.5rem, 4vw, 2.75rem);
   align-items: start;
+  overflow: visible;
 }
 
 .meet-kicker {
@@ -157,6 +165,8 @@
   margin: 0;
   align-self: start;
   width: 100%;
+  overflow: visible;
+  max-height: none;
 }
 
 .meet-photo img {
@@ -166,7 +176,6 @@
   object-fit: cover;
   object-position: center top;
   box-shadow: 0 24px 50px rgba(6, 21, 47, 0.2);
-  /* slight trapezoid feel like ss2 */
   clip-path: polygon(4% 0, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -188,7 +197,7 @@
 
 @media (max-width: 640px) {
   .meet-section {
-    overflow-x: hidden;
+    overflow: visible !important;
   }
 
   .meet-layout {

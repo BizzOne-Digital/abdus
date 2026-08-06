@@ -278,7 +278,7 @@
   width: 100%;
   max-width: 100%;
   background: var(--midnight);
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
 }
 

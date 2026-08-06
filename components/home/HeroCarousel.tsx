@@ -152,7 +152,7 @@ export function HeroCarousel({
     >
       <div className="hero__bg" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={hero?.image || "/images/hero-bg.jpg"} alt="" />
+        <img src="/images/hero-bg.jpg" alt="" />
         <div className="hero__bg-shade" />
       </div>
 
