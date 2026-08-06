@@ -18,9 +18,11 @@ export default async function Ward1Page() {
           hero?.body ||
           "North Oshawa deserves visible representation, smart investment and a councillor who stays connected."
         }
-        image={hero?.image}
+        image="/images/hero-bg.jpg"
         ctaHref={hero?.buttonLink || "/contact"}
         ctaLabel={hero?.buttonLabel || "Get Involved"}
+        withWave
+        waveColor="#ffffff"
       />
       <Ward1Section data={sectionByKey(sections, "ward1")} />
       <CommitmentSection data={sectionByKey(sections, "commitment")} />

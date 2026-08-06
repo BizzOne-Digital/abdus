@@ -2,11 +2,21 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 7.5rem 0 3.5rem;
-  min-height: clamp(320px, 42vh, 420px);
+  padding: 7.5rem 0 4.25rem;
+  min-height: clamp(340px, 46vh, 480px);
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
+}
+
+.page-hero--wave {
+  overflow: visible;
+  padding-bottom: 6.5rem;
+}
+
+.page-hero--wave .page-hero__bg {
+  overflow: hidden;
+  border-bottom: 0;
 }
 
 .page-hero__bg {
@@ -14,25 +24,33 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  /* no dark wash */
+  background: none;
 }
 
 .page-hero__bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 40%;
-  /* no dark overlay — show background image clearly */
+  object-position: 72% 32%;
   filter: none;
   opacity: 1;
 }
 
+.page-hero--wave .page-hero__bg img {
+  object-position: 78% 26%;
+  height: 112%;
+  transform: translateY(-2%);
+}
+
 .page-hero__inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   max-width: 760px;
   margin-left: 0;
   margin-right: auto;
+  padding-left: clamp(2.5rem, 9vw, 6rem);
   text-align: left;
   align-self: flex-end;
 }
@@ -83,21 +101,39 @@
   margin-top: 1.5rem;
 }
 
+.page-hero__wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  z-index: 3;
+  display: block;
+  width: 100%;
+  height: clamp(88px, 14vw, 130px);
+  pointer-events: none;
+  line-height: 0;
+}
+
 .page-bg--inner .site-header {
   position: absolute;
 }
 
 @media (max-width: 640px) {
   .page-hero {
-    padding: 6.25rem 0 2.5rem;
+    padding: 6.25rem 0 3rem;
     overflow: hidden;
     width: 100%;
     max-width: 100%;
   }
 
+  .page-hero--wave {
+    padding-bottom: 4rem;
+  }
+
   .page-hero__inner {
     max-width: 100%;
     min-width: 0;
+    padding-left: clamp(0.75rem, 4vw, 1.25rem);
     text-align: left;
   }
 
@@ -119,5 +155,13 @@
     flex: 1 1 100%;
     width: 100%;
     justify-content: center;
+  }
+
+  .page-hero__wave {
+    height: clamp(56px, 16vw, 80px);
+  }
+
+  .page-hero--wave .page-hero__bg img {
+    object-position: 70% 30%;
   }
 }

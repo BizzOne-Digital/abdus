@@ -2,6 +2,13 @@
   overflow: hidden;
 }
 
+/* Navy section after hero wave — no hard seam */
+.page-hero--wave + .community-section {
+  margin-top: -1px;
+  border-top: 0;
+  box-shadow: none;
+}
+
 .community-top {
   display: grid;
   grid-template-columns: minmax(180px, 0.55fr) minmax(0, 1.45fr);

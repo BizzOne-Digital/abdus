@@ -11,6 +11,10 @@ type Props = {
   image?: string;
   ctaHref?: string;
   ctaLabel?: string;
+  /** Smooth zigzag bottom edge */
+  withWave?: boolean;
+  /** Wave fill — match the section below */
+  waveColor?: string;
 };
 
 export function PageHero({
@@ -20,12 +24,17 @@ export function PageHero({
   image = "/images/hero-bg.jpg",
   ctaHref = "/contact",
   ctaLabel = "Get Involved",
+  withWave = false,
+  waveColor = "#F7F3EA",
 }: Props) {
   const isExternal =
     ctaHref.startsWith("mailto:") || ctaHref.startsWith("tel:");
 
   return (
-    <section className="page-hero" aria-labelledby="page-hero-title">
+    <section
+      className={`page-hero${withWave ? " page-hero--wave" : ""}`}
+      aria-labelledby="page-hero-title"
+    >
       <div className="page-hero__bg" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={image || "/images/hero-bg.jpg"} alt="" />
@@ -51,6 +60,20 @@ export function PageHero({
           </Link>
         </div>
       </div>
+
+      {withWave ? (
+        <svg
+          className="page-hero__wave"
+          viewBox="0 0 1440 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M0,48 C180,95 300,8 480,52 C660,96 780,12 960,48 C1140,84 1260,18 1440,55 L1440,100 L0,100 Z"
+            fill={waveColor}
+          />
+        </svg>
+      ) : null}
     </section>
   );
 }

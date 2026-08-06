@@ -24,6 +24,8 @@ export default async function VisionPage() {
         image={hero?.image}
         ctaHref={hero?.buttonLink || "/contact"}
         ctaLabel={hero?.buttonLabel || "Join the Campaign"}
+        withWave
+        waveColor="#06152f"
       />
       <PrioritySection
         heading={sectionByKey(sections, "priorities")}

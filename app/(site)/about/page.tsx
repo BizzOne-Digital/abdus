@@ -21,6 +21,8 @@ export default async function AboutPage() {
         image={hero?.image}
         ctaHref={hero?.buttonLink || "/contact"}
         ctaLabel={hero?.buttonLabel || "Meet Shinwary"}
+        withWave
+        waveColor="#F7F3EA"
       />
       <MeetSection
         meet={sectionByKey(sections, "meet")}

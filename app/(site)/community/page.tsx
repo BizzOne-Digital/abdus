@@ -17,9 +17,11 @@ export default async function CommunityPage() {
           hero?.body ||
           "Showing up. Listening. Working together for Ward 1."
         }
-        image={hero?.image}
+        image="/images/hero-bg.jpg"
         ctaHref={hero?.buttonLink || "/contact"}
         ctaLabel={hero?.buttonLabel || "Get Involved"}
+        withWave
+        waveColor="#06152f"
       />
       <CommunitySection
         community={sectionByKey(sections, "community")}

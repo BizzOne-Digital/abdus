@@ -1,8 +1,13 @@
 .meet-section {
   position: relative;
   background: transparent;
-  margin-top: 0.5rem;
+  margin-top: 0;
   overflow: visible !important;
+}
+
+/* When About hero already has the ivory zigzag, hide duplicate top wave */
+.page-hero--wave + .meet-section .meet-section__wave {
+  display: none;
 }
 
 .meet-section__body {

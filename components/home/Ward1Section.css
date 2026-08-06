@@ -26,6 +26,13 @@
   background-size: 40px 40px, 40px 40px;
 }
 
+/* White section after hero wave — no hard seam */
+.page-hero--wave + .ward-section {
+  margin-top: -1px;
+  border-top: 0;
+  box-shadow: none;
+}
+
 .ward-section::before {
   content: "";
   position: absolute;

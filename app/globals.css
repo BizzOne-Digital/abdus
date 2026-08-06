@@ -408,6 +408,10 @@ p {
   overflow-x: clip;
 }
 
+.page-bg > main > .page-hero.page-hero--wave {
+  overflow: visible;
+}
+
 .page-bg > main > .meet-section {
   position: relative;
   z-index: 1;

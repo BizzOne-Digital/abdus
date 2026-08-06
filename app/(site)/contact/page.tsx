@@ -32,9 +32,11 @@ export default async function ContactPage() {
           hero?.body ||
           "Your voice. Your neighbourhood. Your future. Reach out and join the campaign."
         }
-        image={hero?.image}
+        image="/images/hero-bg.jpg"
         ctaHref={hero?.buttonLink || `mailto:${email}`}
         ctaLabel={hero?.buttonLabel || "Email Shinwary"}
+        withWave
+        waveColor="#06152f"
       />
 
       <section
