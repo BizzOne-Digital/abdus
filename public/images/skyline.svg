@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" fill="none" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+  <defs>
+    <linearGradient id="skyGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#176BDB" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#06152F" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="reflect" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8DDCFF" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#06152F" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="220" fill="url(#skyGlow)"/>
+  <g fill="#020B1C" opacity="0.92">
+    <rect x="40" y="110" width="48" height="70"/>
+    <rect x="100" y="80" width="36" height="100"/>
+    <rect x="148" y="95" width="58" height="85"/>
+    <rect x="220" y="60" width="42" height="120"/>
+    <rect x="275" y="88" width="70" height="92"/>
+    <rect x="360" y="50" width="50" height="130"/>
+    <polygon points="410,50 435,20 460,50"/>
+    <rect x="430" y="50" width="10" height="20"/>
+    <rect x="480" y="100" width="90" height="80"/>
+    <rect x="585" y="72" width="44" height="108"/>
+    <rect x="645" y="40" width="55" height="140"/>
+    <polygon points="645,40 672,8 700,40"/>
+    <rect x="720" y="95" width="38" height="85"/>
+    <rect x="775" y="65" width="62" height="115"/>
+    <rect x="855" y="85" width="48" height="95"/>
+    <rect x="920" y="55" width="40" height="125"/>
+    <rect x="980" y="78" width="75" height="102"/>
+    <rect x="1075" y="48" width="52" height="132"/>
+    <polygon points="1075,48 1101,18 1127,48"/>
+    <rect x="1145" y="90" width="60" height="90"/>
+    <rect x="1220" y="70" width="45" height="110"/>
+    <rect x="1280" y="100" width="80" height="80"/>
+    <rect x="1375" y="85" width="40" height="95"/>
+  </g>
+  <g fill="#0A1F45" opacity="0.55">
+    <rect x="60" y="180" width="48" height="40" transform="scale(1,-1) translate(0,-400)"/>
+  </g>
+  <ellipse cx="720" cy="188" rx="720" ry="32" fill="url(#reflect)"/>
+  <path d="M0 180 Q360 155 720 180 T1440 180 L1440 220 L0 220 Z" fill="#06152F" opacity="0.65"/>
+</svg>

@@ -1,0 +1,237 @@
+.community-section {
+  overflow: hidden;
+}
+
+.community-top {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.55fr) minmax(0, 1.45fr);
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  align-items: center;
+}
+
+.community-intro {
+  max-width: 18rem;
+}
+
+.community-rule {
+  display: block;
+  width: 3.25rem;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--warm-orange), var(--coral));
+  margin: 0.85rem 0;
+}
+
+.community-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 4vw, 3.1rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.98;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  max-width: 10ch;
+}
+
+.community-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  margin-top: 0.35rem;
+  padding: 0.95rem 1.25rem;
+  border-radius: 16px;
+  border-color: rgba(141, 220, 255, 0.4);
+  box-shadow:
+    0 14px 34px rgba(2, 8, 24, 0.35),
+    0 0 24px rgba(73, 199, 232, 0.16);
+}
+
+.community-badge__ward {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+
+.community-badge__first {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--coral);
+  line-height: 1;
+}
+
+.community-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem 1.1rem;
+  align-items: start;
+  padding: 0.35rem 0 0.5rem;
+}
+
+.community-shot {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.community-shot__frame {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 18px 40px rgba(2, 8, 24, 0.4);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.35s var(--ease-out);
+}
+
+.community-shot__frame:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+.community-shot img {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  display: block;
+  min-height: clamp(200px, 22vw, 280px);
+}
+
+.community-shot--0 {
+  margin-top: 1.25rem;
+}
+
+.community-shot--1 {
+  margin-top: 0;
+  z-index: 1;
+}
+
+.community-shot--2 {
+  margin-top: 1.5rem;
+}
+
+.community-shot__caption {
+  text-align: left;
+  padding: 0 0.15rem;
+}
+
+.community-shot__label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.3rem;
+}
+
+.community-shot__caption p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  max-width: 22ch;
+}
+
+.community-advocacy {
+  margin-top: clamp(2.25rem, 5vw, 3.25rem);
+}
+
+.community-advocacy__title {
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--light-blue);
+  margin-bottom: 0.95rem;
+}
+
+.advocacy-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  position: relative;
+}
+
+.advocacy-timeline::before {
+  display: none;
+}
+
+.advocacy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 18px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.4;
+  height: 100%;
+}
+
+.advocacy-item__dot {
+  width: 10px;
+  height: 10px;
+  margin-top: 0.35rem;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(73, 199, 232, 0.2);
+  flex-shrink: 0;
+}
+
+@media (max-width: 1100px) {
+  .advocacy-timeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .community-top {
+    grid-template-columns: 1fr;
+  }
+
+  .community-intro {
+    max-width: none;
+  }
+
+  .community-title {
+    max-width: 14ch;
+  }
+
+  .community-gallery {
+    padding-inline: 0;
+  }
+
+  .community-shot--0,
+  .community-shot--2 {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .community-gallery {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+    padding: 0.5rem 0.15rem 0.75rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .community-shot {
+    flex: 0 0 min(82vw, 320px);
+    scroll-snap-align: start;
+  }
+
+  .community-shot__frame {
+    transform: none;
+  }
+
+  .advocacy-timeline {
+    grid-template-columns: 1fr;
+  }
+}

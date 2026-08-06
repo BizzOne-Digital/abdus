@@ -1,0 +1,71 @@
+.ward-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.ward-map-card {
+  padding: 1rem;
+}
+
+.ward-map-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+}
+
+.ward-copy .section__title {
+  max-width: none;
+  white-space: nowrap;
+}
+
+.ward-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.ward-point {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.05rem 1.15rem;
+  border-radius: 22px;
+}
+
+.ward-point__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--cyan);
+  border: 1px solid rgba(73, 199, 232, 0.35);
+  background: rgba(73, 199, 232, 0.1);
+}
+
+.ward-point h3 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.ward-point p {
+  color: var(--light-blue);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 860px) {
+  .ward-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ward-copy .section__title {
+    white-space: normal;
+  }
+}

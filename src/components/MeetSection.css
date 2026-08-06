@@ -1,0 +1,198 @@
+.meet-section {
+  position: relative;
+  background: transparent;
+  margin-top: 0.5rem;
+}
+
+.meet-section__body {
+  background: var(--ivory);
+  color: var(--deep-navy);
+  padding: clamp(1.25rem, 3vw, 2.25rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.meet-section__wave-bottom {
+  display: block;
+  margin-top: -1px;
+}
+
+.meet-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: start;
+}
+
+.meet-kicker {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 0.5rem;
+}
+
+.meet-title {
+  font-size: clamp(2.2rem, 4.2vw, 3.15rem);
+  text-transform: uppercase;
+  color: var(--deep-navy);
+  max-width: 12ch;
+  line-height: 0.98;
+  margin-bottom: 1.35rem;
+}
+
+.meet-quote-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.15rem;
+  margin-bottom: 1.35rem;
+  max-width: 42rem;
+}
+
+.meet-years-box {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 78px;
+  padding: 0.7rem 0.65rem;
+  border: 2px solid var(--coral);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 8px 22px rgba(6, 21, 47, 0.08);
+  text-align: center;
+  line-height: 1;
+}
+
+.meet-years-box__num {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--coral);
+  letter-spacing: 0.02em;
+}
+
+.meet-years-box__label {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--deep-navy);
+  margin-top: 0.25rem;
+}
+
+.meet-quote {
+  margin: 0;
+  padding: 0.15rem 0 0;
+  max-width: 28ch;
+}
+
+.meet-quote p {
+  font-family: var(--font-quote);
+  font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--deep-navy);
+}
+
+.meet-quote footer {
+  margin-top: 0.55rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #4a6280;
+}
+
+.meet-intro {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #243652;
+  max-width: 48ch;
+  margin-bottom: 1.35rem;
+}
+
+.meet-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.meet-card {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  min-height: 100%;
+}
+
+.meet-card__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--coral);
+  background: rgba(255, 107, 60, 0.1);
+  border: 1px solid rgba(255, 107, 60, 0.22);
+}
+
+.meet-card h3 {
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--deep-navy);
+  margin-bottom: 0.25rem;
+}
+
+.meet-card p {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #334961;
+}
+
+.meet-photo {
+  margin: 0;
+  align-self: start;
+  width: 100%;
+}
+
+.meet-photo img {
+  width: 100%;
+  border-radius: 28px;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  object-position: center top;
+  box-shadow: 0 24px 50px rgba(6, 21, 47, 0.2);
+  /* slight trapezoid feel like ss2 */
+  clip-path: polygon(4% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+@media (max-width: 900px) {
+  .meet-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .meet-photo {
+    order: -1;
+    max-width: 560px;
+  }
+
+  .meet-photo img {
+    clip-path: none;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .meet-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .meet-quote-row {
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+}
