@@ -2,24 +2,24 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 7.5rem 0 5.75rem;
-  min-height: clamp(340px, 46vh, 480px);
+  padding: 7.5rem 0 0;
+  min-height: clamp(380px, 50vh, 520px);
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
+  background: #06152f;
 }
 
 .page-hero--wave {
   overflow: visible;
-  padding-bottom: 7.5rem;
   background: #ffffff;
 }
 
 .page-hero--wave .page-hero__bg {
   overflow: hidden;
   border-bottom: 0;
-  /* Keep dark skyline from peeking as a straight bar under the wave */
-  bottom: clamp(48px, 9vw, 96px);
+  /* Leave room for white wave only */
+  bottom: clamp(40px, 7vw, 72px);
 }
 
 .page-hero__bg {
@@ -27,7 +27,6 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  /* no dark wash */
   background: none;
 }
 
@@ -53,9 +52,14 @@
   max-width: 760px;
   margin-left: 0;
   margin-right: auto;
-  padding-left: clamp(2.5rem, 9vw, 6rem);
+  padding: 0 clamp(1.25rem, 4vw, 0) 4.5rem clamp(2.5rem, 9vw, 6rem);
   text-align: left;
   align-self: flex-end;
+}
+
+.page-hero--wave .page-hero__inner {
+  /* Extra space so buttons clear the wave */
+  padding-bottom: clamp(5.5rem, 10vw, 7.5rem);
 }
 
 .page-hero__eyebrow {
@@ -123,31 +127,27 @@
 
 @media (max-width: 640px) {
   .page-hero {
-    padding: 6.5rem 0 5.5rem;
+    padding: 6.5rem 0 0;
     overflow: hidden;
     width: 100%;
     max-width: 100%;
     min-height: 0;
-    align-items: flex-end;
-  }
-
-  .page-hero--wave {
-    padding-bottom: 6.75rem;
-    background: #ffffff;
   }
 
   .page-hero--wave .page-hero__bg {
-    bottom: clamp(52px, 14vw, 80px);
+    bottom: clamp(48px, 12vw, 72px);
   }
 
   .page-hero__inner {
     max-width: 100%;
     min-width: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0.75rem;
+    padding: 0 0 3.75rem;
     text-align: left;
     width: 100%;
+  }
+
+  .page-hero--wave .page-hero__inner {
+    padding-bottom: 5.25rem;
   }
 
   .page-hero__eyebrow {
@@ -171,7 +171,6 @@
     justify-content: flex-start;
     gap: 0.65rem;
     margin-top: 1.25rem;
-    margin-bottom: 0.5rem;
   }
 
   .page-hero__actions .btn {
@@ -186,16 +185,5 @@
 
   .page-hero--wave .page-hero__bg img {
     object-position: 70% 30%;
-  }
-
-  /* Breathing room under hero on every inner page */
-  .page-hero + * {
-    padding-top: 0.5rem;
-  }
-
-  .page-hero + .inner-section,
-  .page-hero + .section,
-  .page-hero + .donate-page .donate-guide {
-    margin-top: 0;
   }
 }
