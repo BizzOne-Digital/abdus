@@ -3,6 +3,10 @@
   color: var(--deep-navy);
 }
 
+.donate-guide.section {
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+}
+
 .donate-page .section__title {
   color: var(--deep-navy);
 }
@@ -147,5 +151,25 @@
   .donate-etransfer__actions .btn {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .donate-guide.section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .donate-etransfer.section {
+    padding-top: 0.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .donate-etransfer__email a {
+    font-size: 1.15rem;
+  }
+
+  .donate-guide__bullets {
+    margin-top: 1rem;
   }
 }

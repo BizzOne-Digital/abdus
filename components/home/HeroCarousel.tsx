@@ -386,7 +386,7 @@ function SlideMeet({
   return (
     <div className="hero-grid hero-grid--meet">
       <motion.div
-        className="hero-copy hero-copy--wide"
+        className="hero-copy hero-copy--wide hero-copy--meet"
         variants={reduced ? undefined : staggerParent}
         initial={reduced ? false : "hidden"}
         animate="show"

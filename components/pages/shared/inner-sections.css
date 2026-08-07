@@ -170,6 +170,11 @@
 @media (max-width: 640px) {
   .inner-section {
     overflow-x: clip;
+    padding: clamp(2.25rem, 7vw, 3.25rem) 0;
+  }
+
+  .page-hero + .inner-section {
+    padding-top: clamp(2rem, 6vw, 2.75rem);
   }
 
   .page-cta-band {

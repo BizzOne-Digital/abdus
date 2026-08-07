@@ -67,8 +67,16 @@
   margin-top: 0.35rem;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 640px) {
+  .contact-page {
+    padding-top: 2rem;
+  }
+
   .contact-page__grid {
     grid-template-columns: 1fr;
+  }
+
+  .contact-card {
+    padding: 1.25rem 1.15rem;
   }
 }

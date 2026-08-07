@@ -2,7 +2,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 7.5rem 0 4.25rem;
+  padding: 7.5rem 0 5.75rem;
   min-height: clamp(340px, 46vh, 480px);
   display: flex;
   align-items: flex-end;
@@ -11,7 +11,7 @@
 
 .page-hero--wave {
   overflow: visible;
-  padding-bottom: 6.5rem;
+  padding-bottom: 7.5rem;
   background: #ffffff;
 }
 
@@ -123,20 +123,21 @@
 
 @media (max-width: 640px) {
   .page-hero {
-    padding: 5.75rem 0 2.75rem;
+    padding: 6.5rem 0 5.5rem;
     overflow: hidden;
     width: 100%;
     max-width: 100%;
-    min-height: clamp(280px, 52vh, 400px);
+    min-height: 0;
+    align-items: flex-end;
   }
 
   .page-hero--wave {
-    padding-bottom: 4.25rem;
+    padding-bottom: 6.75rem;
     background: #ffffff;
   }
 
   .page-hero--wave .page-hero__bg {
-    bottom: clamp(36px, 10vw, 64px);
+    bottom: clamp(52px, 14vw, 80px);
   }
 
   .page-hero__inner {
@@ -144,23 +145,33 @@
     min-width: 0;
     padding-left: 0;
     padding-right: 0;
+    padding-bottom: 0.75rem;
     text-align: left;
+    width: 100%;
+  }
+
+  .page-hero__eyebrow {
+    margin-bottom: 0.55rem;
+    font-size: 0.85rem;
   }
 
   .page-hero__title {
     max-width: 100%;
-    font-size: clamp(1.95rem, 8.5vw, 2.75rem);
+    font-size: clamp(1.85rem, 8vw, 2.55rem);
   }
 
   .page-hero__lead {
     max-width: 100%;
-    font-size: 1rem;
+    font-size: 0.98rem;
+    margin-top: 0.75rem;
   }
 
   .page-hero__actions {
     width: 100%;
     justify-content: flex-start;
     gap: 0.65rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
   }
 
   .page-hero__actions .btn {
@@ -170,10 +181,21 @@
   }
 
   .page-hero__wave {
-    height: clamp(64px, 18vw, 88px);
+    height: clamp(72px, 20vw, 96px);
   }
 
   .page-hero--wave .page-hero__bg img {
     object-position: 70% 30%;
+  }
+
+  /* Breathing room under hero on every inner page */
+  .page-hero + * {
+    padding-top: 0.5rem;
+  }
+
+  .page-hero + .inner-section,
+  .page-hero + .section,
+  .page-hero + .donate-page .donate-guide {
+    margin-top: 0;
   }
 }

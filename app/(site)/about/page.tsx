@@ -20,8 +20,6 @@ export default async function AboutPage() {
         image={hero?.image || "/images/hero-bg.jpg"}
         ctaHref={hero?.buttonLink || "/contact"}
         ctaLabel={hero?.buttonLabel || "Meet Shinwary"}
-        withWave
-        waveColor="#F7F3EA"
       />
       <AboutPageSections
         story={sectionByKey(sections, "story")}
