@@ -437,9 +437,18 @@
     box-sizing: border-box;
   }
 
+  .brand {
+    min-width: 0;
+  }
+
   .brand__logo {
     width: 40px;
     height: 40px;
+    flex-shrink: 0;
+  }
+
+  .brand__vote {
+    font-size: clamp(0.95rem, 4.2vw, 1.1rem);
   }
 
   .brand__sub {
@@ -450,6 +459,11 @@
   .mobile-menu {
     width: 100%;
     max-width: 100%;
+  }
+
+  .mobile-menu a,
+  .mobile-menu .btn {
+    min-height: 48px;
   }
 
   .cms-hero {
@@ -483,6 +497,8 @@
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    margin-top: 1.25rem;
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   .site-footer__logo {
@@ -506,6 +522,7 @@
   .site-footer__bottom-inner {
     flex-direction: column;
     text-align: left;
+    gap: 0.5rem;
   }
 
   .site-footer__contact a {
@@ -517,6 +534,7 @@
     padding: 0.7rem 1.15rem;
     font-size: 0.98rem;
     max-width: 100%;
+    box-sizing: border-box;
   }
 }
 

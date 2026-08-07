@@ -20,51 +20,51 @@ const DEFAULT_STORY = {
   eyebrow: "His Story",
   title: "From newcomer to neighbour.",
   lead:
-    "Shinwary rebuilt his life in Canada with hard work, education and a deep belief that public service should be practical — not political theatre.",
+    "Shinwary rebuilt his life in Canada through hard work and education — and chose Oshawa as home.",
   body:
-    "Raised with respect for community and responsibility, he chose Oshawa as home. Ward 1 is where his family lives, where neighbours become friends, and where decisions at city hall should reflect everyday life — safer streets, fair taxes and councillors who answer the phone.",
+    "Ward 1 is where his family lives. He brings budget experience, community presence, and a promise to take your voice to City Hall.",
   image: "/images/candidate-podium.jpg",
 };
 
 const DEFAULT_TIMELINE = [
   {
     year: "Education",
-    title: "Built a foundation in service",
-    body: "Environmental Management and Paralegal studies — training grounded in policy, compliance and real-world problem solving.",
+    title: "Foundation in service",
+    body: "Environmental Management and Paralegal studies.",
   },
   {
     year: "15+ Years",
     title: "Led across sectors",
-    body: "Project management, budgeting and team leadership in government, non-profit and private organizations across Canada.",
+    body: "Projects and budgets in government, non-profit and private work.",
   },
   {
     year: "Community",
     title: "Showed up for neighbours",
-    body: "Volunteering, advocacy and listening sessions — building trust block by block in North Oshawa.",
+    body: "Listening and advocacy across North Oshawa.",
   },
   {
     year: "2026",
-    title: "Ready to serve Ward 1",
-    body: "Running to bring visible representation, responsible spending and a councillor who reports back every month.",
+    title: "Ready for Ward 1",
+    body: "Visible representation. Monthly updates. Results that matter.",
   },
 ];
 
 const DEFAULT_VALUES = [
   {
     title: "Service First",
-    body: "Politics should solve problems — not create them. Ward 1 deserves results.",
+    body: "Solve problems — don't create them.",
   },
   {
     title: "Accountability",
-    body: "Open books, honest communication and decisions you can see in your neighbourhood.",
+    body: "Open communication and decisions you can see.",
   },
   {
     title: "Monthly Updates",
-    body: "Clear reports online and in the community so you always know what's happening.",
+    body: "Clear reports so you always know what's happening.",
   },
   {
     title: "Practical Leadership",
-    body: "Experience managing budgets, projects and teams — skills that translate to council.",
+    body: "Budget and project skills that translate to council.",
   },
 ];
 
@@ -110,7 +110,7 @@ export function AboutPageSections({ story, timeline, values, quote }: Props) {
 
   const quoteText =
     quote?.body ||
-    "Canada gave my family opportunity. Now it's my turn to give back — with the same perseverance that brought us here.";
+    "Canada gave my family opportunity. Now it's my turn to give back.";
   const quoteBy = quote?.buttonLabel || "— A. Salam Shinwary";
   const years = quote?.title || "15+";
   const yearsLabel = quote?.subtitle || "Years of service";

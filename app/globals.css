@@ -146,19 +146,31 @@ p {
 @media (max-width: 640px) {
   body {
     font-size: 15px;
+    overflow-x: clip;
+  }
+
+  html {
+    overflow-x: clip;
   }
 
   .container {
-    width: min(100% - 1.5rem, var(--max-width));
+    width: min(100% - 1.25rem, var(--max-width));
   }
 
   .section {
-    padding: clamp(2.25rem, 7vw, 3.25rem) 0;
+    padding: clamp(2.1rem, 7vw, 3rem) 0;
     overflow-x: hidden;
   }
 
   .section__title {
     max-width: 100%;
+    font-size: clamp(1.75rem, 7.5vw, 2.35rem);
+  }
+
+  .section__lead,
+  .section__lead--wide {
+    max-width: 100%;
+    font-size: 1rem;
   }
 
   .btn:hover {
@@ -167,6 +179,12 @@ p {
 
   .liquid-glass--hover:hover {
     transform: none;
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
   }
 }
 
@@ -384,7 +402,7 @@ p {
 }
 
 .page-bg {
-  background: linear-gradient(180deg, var(--midnight) 0%, var(--deep-navy) 40%, #061a3a 100%);
+  background: #ffffff;
   min-height: 100vh;
   width: 100%;
   max-width: 100%;

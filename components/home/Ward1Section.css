@@ -3,152 +3,131 @@
   background-color: #ffffff;
   color: var(--deep-navy);
   overflow: hidden;
-  /* Soft zigzag / chevron pattern */
-  background-image:
-    repeating-linear-gradient(
-      135deg,
-      transparent 0,
-      transparent 14px,
-      rgba(23, 107, 219, 0.045) 14px,
-      rgba(23, 107, 219, 0.045) 15px,
-      transparent 15px,
-      transparent 28px
-    ),
-    repeating-linear-gradient(
-      45deg,
-      transparent 0,
-      transparent 14px,
-      rgba(6, 21, 47, 0.035) 14px,
-      rgba(6, 21, 47, 0.035) 15px,
-      transparent 15px,
-      transparent 28px
-    );
-  background-size: 40px 40px, 40px 40px;
+  border-top: 1px solid rgba(6, 21, 47, 0.06);
 }
 
-/* White section after hero wave — no hard seam */
-.page-hero--wave + .ward-section {
-  margin-top: -1px;
-  border-top: 0;
-  box-shadow: none;
+.ward-section .section__title {
+  color: var(--deep-navy);
 }
 
-.ward-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 55% 50% at 12% 40%, rgba(73, 199, 232, 0.1), transparent 65%),
-    radial-gradient(ellipse 45% 40% at 88% 70%, rgba(255, 107, 60, 0.06), transparent 60%);
-  z-index: 0;
+.ward-section .section__lead {
+  color: #4a6280;
 }
 
-.ward-section > .container {
-  position: relative;
-  z-index: 1;
+.ward-section .section__eyebrow {
+  color: var(--coral);
 }
 
 .ward-layout {
   display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
-}
-
-.ward-map-card {
-  padding: 1rem;
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(7, 27, 59, 0.12);
-  --glass-highlight: rgba(255, 255, 255, 0.9);
-  --glass-glow: rgba(23, 107, 219, 0.12);
-  color: var(--deep-navy);
-  box-shadow: 0 18px 40px rgba(6, 21, 47, 0.1);
-}
-
-.ward-map-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 18px;
-}
-
-.ward-copy .section__title {
-  max-width: none;
-  white-space: nowrap;
-  color: var(--deep-navy);
-}
-
-.ward-copy .section__lead {
-  color: #3d5270;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: start;
 }
 
 .ward-points {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  margin-top: 1.5rem;
+  gap: 0.65rem;
+  margin-top: 1.35rem;
+  list-style: none;
+  padding: 0;
 }
 
 .ward-point {
   display: flex;
-  gap: 1rem;
+  gap: 0.85rem;
   align-items: flex-start;
-  padding: 1.05rem 1.15rem;
-  border-radius: 22px;
-  --glass-bg: rgba(255, 255, 255, 0.92);
-  --glass-border: rgba(23, 107, 219, 0.18);
-  --glass-highlight: rgba(255, 255, 255, 0.95);
-  --glass-glow: rgba(73, 199, 232, 0.12);
-  color: var(--deep-navy);
-  box-shadow: 0 12px 28px rgba(6, 21, 47, 0.08);
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(6, 21, 47, 0.1);
+  background: #fafbfc;
 }
 
 .ward-point__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
   display: grid;
   place-items: center;
   flex-shrink: 0;
   color: var(--royal);
-  border: 1px solid rgba(23, 107, 219, 0.28);
-  background: rgba(23, 107, 219, 0.08);
+  border: 1px solid rgba(23, 107, 219, 0.2);
+  background: rgba(23, 107, 219, 0.07);
 }
 
 .ward-point h3 {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.15rem;
   color: var(--deep-navy);
 }
 
 .ward-point p {
   color: #4a6280;
-  font-size: 0.98rem;
-  line-height: 1.5;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin: 0;
 }
 
-@media (max-width: 860px) {
+.ward-donate-row {
+  display: flex;
+  gap: 1.15rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: 18px;
+  border: 1px solid rgba(6, 21, 47, 0.1);
+  background: #f7f8fa;
+}
+
+.ward-donate-row__copy h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+  color: var(--deep-navy);
+}
+
+.ward-donate-row__copy p {
+  font-size: 0.92rem;
+  color: #4a6280;
+  margin: 0 0 0.75rem;
+  line-height: 1.45;
+}
+
+.ward-donate-row__copy strong {
+  color: var(--deep-navy);
+  word-break: break-all;
+}
+
+@media (max-width: 900px) {
   .ward-layout {
     grid-template-columns: 1fr;
-    width: 100%;
-    max-width: 100%;
   }
+}
 
-  .ward-map-wrap,
-  .ward-copy,
-  .ward-point {
-    max-width: 100%;
-    min-width: 0;
-  }
-
+@media (max-width: 560px) {
   .ward-section {
-    overflow-x: clip;
+    padding-left: 0;
+    padding-right: 0;
   }
 
-  .ward-copy .section__title {
-    white-space: normal;
-    max-width: 100%;
+  .ward-point {
+    padding: 0.85rem 0.9rem;
+  }
+
+  .ward-donate-row {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+    gap: 0.85rem;
+  }
+
+  .ward-donate-row__copy .btn {
+    width: 100%;
+    justify-content: center;
   }
 }

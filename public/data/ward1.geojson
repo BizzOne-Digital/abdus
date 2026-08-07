@@ -1,0 +1,25 @@
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Ward 1",
+    "source": "Approximate boundary — replace with City of Oshawa GIS when provided"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-78.925, 43.975],
+        [-78.860, 43.978],
+        [-78.830, 43.965],
+        [-78.815, 43.940],
+        [-78.820, 43.910],
+        [-78.845, 43.895],
+        [-78.880, 43.888],
+        [-78.915, 43.895],
+        [-78.935, 43.920],
+        [-78.940, 43.950],
+        [-78.925, 43.975]
+      ]
+    ]
+  }
+}

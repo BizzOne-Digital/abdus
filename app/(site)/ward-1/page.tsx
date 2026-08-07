@@ -1,7 +1,7 @@
 import { PageHero } from "@/components/home/PageHero";
 import { accentLastWord } from "@/lib/accentTitle";
 import { Ward1Section } from "@/components/home/Ward1Section";
-import { CommitmentSection } from "@/components/home/CommitmentSection";
+import { CommitmentStrip } from "@/components/home/CommitmentStrip";
 import { getCmsPage, sectionByKey } from "@/lib/cms";
 
 export default async function Ward1Page() {
@@ -16,16 +16,16 @@ export default async function Ward1Page() {
         title={accentLastWord(hero?.title || "Ward 1 is Home")}
         lead={
           hero?.body ||
-          "North Oshawa deserves visible representation, smart investment and a councillor who stays connected."
+          "North Oshawa needs visible representation and a councillor who stays connected."
         }
         image="/images/hero-bg.jpg"
-        ctaHref={hero?.buttonLink || "/contact"}
-        ctaLabel={hero?.buttonLabel || "Get Involved"}
+        ctaHref={hero?.buttonLink || "/donate"}
+        ctaLabel={hero?.buttonLabel || "Donate"}
         withWave
         waveColor="#ffffff"
       />
       <Ward1Section data={sectionByKey(sections, "ward1")} />
-      <CommitmentSection data={sectionByKey(sections, "commitment")} />
+      <CommitmentStrip />
     </>
   );
 }

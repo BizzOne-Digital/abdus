@@ -17,8 +17,10 @@ import {
   IconShield,
 } from "@/components/icons";
 import { LiquidGlass } from "@/components/LiquidGlass";
+import { DonateQR } from "@/components/DonateQR";
 import type { CmsSection } from "@/lib/cms";
 import "./HeroCarousel.css";
+import "./DonateQR.css";
 
 type SlideId = 0 | 1 | 2;
 
@@ -211,9 +213,9 @@ export function HeroCarousel({
         >
           <defs>
             <linearGradient id="heroCurveFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#0a274f" stopOpacity="0.55" />
-              <stop offset="45%" stopColor="#06152f" stopOpacity="1" />
-              <stop offset="100%" stopColor="#06152f" stopOpacity="1" />
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.7" />
+              <stop offset="40%" stopColor="#ffffff" stopOpacity="1" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
             </linearGradient>
             <linearGradient id="heroCurveGlow" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stopColor="#49c7e8" stopOpacity="0.95" />
@@ -284,7 +286,7 @@ function SlideLeadership({
   return (
     <div className="hero-grid hero-grid--lead">
       <motion.div
-        className="hero-photo"
+        className="hero-photo hero-photo--compact"
         initial={reduced ? false : { opacity: 0, x: -28 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -337,14 +339,14 @@ function SlideLeadership({
             {data?.buttonLabel || "Our Priorities"}{" "}
             <span className="btn__chevron" aria-hidden="true" />
           </Link>
-          <Link href="/about" className="btn btn--ghost btn--pill">
-            Meet Shinwary
+          <Link href="/donate" className="btn btn--ghost btn--pill">
+            Donate
           </Link>
         </motion.div>
       </motion.div>
 
       <motion.aside
-        className="hero-signature"
+        className="hero-signature hero-signature--with-qr"
         initial={reduced ? false : { opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.28, duration: 0.55 }}
@@ -358,6 +360,9 @@ function SlideLeadership({
             <span>{signature?.body || "A Strong Voice for Ward 1"}</span>
           </div>
         </LiquidGlass>
+        <div className="hero-qr">
+          <DonateQR size={100} label="Scan to donate" />
+        </div>
       </motion.aside>
     </div>
   );

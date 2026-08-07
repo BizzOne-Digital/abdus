@@ -1,7 +1,6 @@
 import { PageHero } from "@/components/home/PageHero";
 import { accentLastWord } from "@/lib/accentTitle";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
-import { LiquidGlass } from "@/components/LiquidGlass";
+import { CommitmentStrip } from "@/components/home/CommitmentStrip";
 import { IconMail, IconPhone } from "@/components/icons";
 import {
   getCmsPage,
@@ -30,13 +29,13 @@ export default async function ContactPage() {
         title={accentLastWord(hero?.title || "Let’s Move Ward 1 Forward")}
         lead={
           hero?.body ||
-          "Your voice. Your neighbourhood. Your future. Reach out and join the campaign."
+          "Questions, volunteering, or support — reach out."
         }
         image="/images/hero-bg.jpg"
         ctaHref={hero?.buttonLink || `mailto:${email}`}
         ctaLabel={hero?.buttonLabel || "Email Shinwary"}
         withWave
-        waveColor="#06152f"
+        waveColor="#ffffff"
       />
 
       <section
@@ -44,13 +43,13 @@ export default async function ContactPage() {
         aria-labelledby="contact-details-title"
       >
         <div className="container contact-page__grid">
-          <LiquidGlass as="article" className="contact-card">
+          <article className="contact-card">
             <h2 id="contact-details-title">
               {details?.title || "Campaign Contact"}
             </h2>
             <p>
               {details?.body ||
-                "Questions about Ward 1 priorities, volunteering, or the campaign? Get in touch directly."}
+                "Questions about Ward 1 or the campaign? Get in touch."}
             </p>
             <ul className="contact-card__list">
               <li>
@@ -66,29 +65,30 @@ export default async function ContactPage() {
                 </a>
               </li>
             </ul>
-          </LiquidGlass>
+          </article>
 
-          <LiquidGlass as="article" className="contact-card">
+          <article className="contact-card">
             <h2>{involve?.title || "Get Involved"}</h2>
             <p>
               {involve?.body ||
-                "Help move Ward 1 forward — share the campaign, talk with neighbours, and stay connected for updates."}
+                "Volunteer, share the campaign, or donate by e-Transfer."}
             </p>
-            <a
-              href={involve?.buttonLink || `mailto:${email}`}
-              className="btn btn--primary btn--pill"
-            >
-              {involve?.buttonLabel || "Join the Campaign"}
-            </a>
-          </LiquidGlass>
+            <div className="contact-card__actions">
+              <a
+                href={involve?.buttonLink || `mailto:${email}`}
+                className="btn btn--primary btn--pill"
+              >
+                {involve?.buttonLabel || "Join the Campaign"}
+              </a>
+              <a href="/donate" className="btn btn--ghost-dark btn--pill">
+                Donate
+              </a>
+            </div>
+          </article>
         </div>
       </section>
 
-      <ClosingCTA
-        email={email}
-        phone={phone}
-        data={sectionByKey(sections, "closing")}
-      />
+      <CommitmentStrip />
     </>
   );
 }

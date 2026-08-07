@@ -1,0 +1,56 @@
+.ward-map {
+  position: relative;
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(6, 21, 47, 0.12);
+  background: #f4f6f8;
+  box-shadow: 0 12px 32px rgba(6, 21, 47, 0.08);
+}
+
+.ward-map__canvas {
+  width: 100%;
+  height: clamp(280px, 42vw, 420px);
+  z-index: 0;
+}
+
+@media (max-width: 640px) {
+  .ward-map {
+    border-radius: 14px;
+  }
+
+  .ward-map__canvas {
+    height: min(56vw, 280px);
+    min-height: 220px;
+  }
+
+  .ward-map--loading {
+    min-height: 220px;
+  }
+
+  .ward-map__credit {
+    font-size: 0.65rem;
+    line-height: 1.4;
+  }
+}
+
+.ward-map--loading {
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+  color: #4a6280;
+  font-size: 0.95rem;
+}
+
+.ward-map__credit {
+  margin: 0;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.72rem;
+  color: #5a7088;
+  background: #fff;
+  border-top: 1px solid rgba(6, 21, 47, 0.08);
+}
+
+.ward-map .leaflet-control-zoom a {
+  color: #06152f !important;
+}

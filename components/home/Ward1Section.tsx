@@ -1,28 +1,33 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { LiquidGlass } from "@/components/LiquidGlass";
 import { SectionHeading } from "./SectionHeading";
+import { DonateQR } from "@/components/DonateQR";
 import { IconLeaf, IconPeople, IconRoad } from "@/components/icons";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import type { CmsSection } from "@/lib/cms";
 import "./Ward1Section.css";
 
+const WardMap = dynamic(
+  () => import("./WardMap").then((m) => m.WardMap),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="ward-map ward-map--loading">
+        <p>Loading Ward 1 map…</p>
+      </div>
+    ),
+  },
+);
+
 const ICONS = [IconRoad, IconLeaf, IconPeople];
 
 const DEFAULT_POINTS = [
-  {
-    title: "Safe Streets",
-    body: "Better roads, intersections, lighting and school routes.",
-  },
-  {
-    title: "Green Spaces",
-    body: "Protecting parks and creating welcoming community spaces.",
-  },
-  {
-    title: "Strong Services",
-    body: "Reliable neighbourhood services that improve everyday life.",
-  },
+  { title: "Safe Streets", body: "Roads, lighting and school routes." },
+  { title: "Green Spaces", body: "Parks and welcoming community spaces." },
+  { title: "Strong Services", body: "Reliable neighbourhood services." },
 ];
 
 type Props = {
@@ -39,44 +44,31 @@ export function Ward1Section({ data }: Props) {
     }),
   );
 
-  const titleText = data?.title || "Ward 1 is Home";
-  const titleParts = titleText.trim().split(/\s+/);
-  const last = titleParts.pop() || "Home";
-  const before = titleParts.join(" ");
-
   return (
     <section id="ward1" className="section ward-section" aria-labelledby="ward-title">
       <div className="container ward-layout">
         <motion.div
           className="ward-map-wrap"
-          initial={reduced ? false : { opacity: 0, x: -28 }}
-          whileInView={reduced ? undefined : { opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          initial={reduced ? false : { opacity: 0, y: 20 }}
+          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55 }}
         >
-          <LiquidGlass className="ward-map-card" hover={false}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={data?.image || "/images/ward1-map.svg"}
-              alt="Simplified map highlighting North Oshawa Ward 1"
-              width={480}
-              height={420}
-            />
-          </LiquidGlass>
+          <WardMap />
         </motion.div>
 
         <div className="ward-copy">
           <SectionHeading
             id="ward-title"
+            eyebrow="Ward 1 · Oshawa"
             title={
               <>
-                {before ? `${before} ` : null}
-                <span className="accent">{last}</span>
+                Ward 1 is <span className="accent">Home</span>
               </>
             }
             lead={
               data?.body ||
-              "North Oshawa deserves visible representation, smart investment and a councillor who stays connected."
+              "North Oshawa needs a councillor who shows up and takes your voice to City Hall."
             }
           />
 
@@ -84,23 +76,43 @@ export function Ward1Section({ data }: Props) {
             {points.map((item, i) => (
               <motion.li
                 key={item.title}
-                initial={reduced ? false : { opacity: 0, x: 24 }}
+                initial={reduced ? false : { opacity: 0, x: 16 }}
                 whileInView={reduced ? undefined : { opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
-                transition={{ delay: reduced ? 0 : i * 0.08, duration: 0.45 }}
+                transition={{ delay: reduced ? 0 : i * 0.06, duration: 0.4 }}
               >
-                <LiquidGlass className="ward-point">
+                <div className="ward-point">
                   <div className="ward-point__icon">
-                    <item.Icon size={24} />
+                    <item.Icon size={22} />
                   </div>
                   <div>
                     <h3>{item.title}</h3>
                     <p>{item.body}</p>
                   </div>
-                </LiquidGlass>
+                </div>
               </motion.li>
             ))}
           </ul>
+
+          <motion.div
+            className="ward-donate-row"
+            initial={reduced ? false : { opacity: 0, y: 16 }}
+            whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: 0.1 }}
+          >
+            <DonateQR size={96} label="Donate" />
+            <div className="ward-donate-row__copy">
+              <h3>Support the campaign</h3>
+              <p>
+                Scan the QR or use Interac e-Transfer to{" "}
+                <strong>Vote4shinwary@gmail.com</strong>
+              </p>
+              <Link href="/donate" className="btn btn--primary btn--pill">
+                How to donate
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

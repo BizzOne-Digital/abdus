@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { LiquidGlass } from "@/components/LiquidGlass";
 import { SectionHeading } from "@/components/home/SectionHeading";
 import {
   IconDollar,
@@ -194,7 +193,7 @@ export function VisionPageSections({ intro, priorities, approach }: Props) {
                 <span className="vision-details__num" aria-hidden="true">
                   {card.num}
                 </span>
-                <LiquidGlass className="vision-details__card" hover={false}>
+                <div className="vision-details__card">
                   <div className="vision-details__card-head">
                     <div className="inner-card__icon">
                       <card.Icon size={24} />
@@ -202,7 +201,7 @@ export function VisionPageSections({ intro, priorities, approach }: Props) {
                     <h3>{card.title}</h3>
                   </div>
                   <p>{card.body}</p>
-                </LiquidGlass>
+                </div>
               </motion.article>
             ))}
           </div>

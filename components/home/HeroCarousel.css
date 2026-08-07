@@ -61,7 +61,7 @@
 }
 
 .hero-grid--lead {
-  grid-template-columns: minmax(280px, 1fr) minmax(300px, 1.1fr);
+  grid-template-columns: minmax(320px, 1.15fr) minmax(280px, 1fr);
   grid-template-areas:
     "photo copy"
     "photo signature";
@@ -115,7 +115,7 @@
   position: relative;
   justify-self: start;
   align-self: start;
-  width: min(100%, 640px);
+  width: min(100%, 560px);
   margin-top: 0;
   margin-bottom: 0;
   transform: none;
@@ -136,6 +136,10 @@
   );
 }
 
+.hero-photo--compact {
+  width: min(100%, 520px);
+}
+
 .hero-photo img {
   width: 100%;
   height: auto;
@@ -145,7 +149,11 @@
   border-radius: 0;
   box-shadow: none;
   aspect-ratio: auto;
-  max-height: min(82vh, 820px);
+  max-height: min(78vh, 720px);
+}
+
+.hero-photo--compact img {
+  max-height: min(75vh, 680px);
 }
 
 .hero-photo--cutout-sm {
@@ -323,6 +331,15 @@
   justify-self: end;
   width: min(100%, 360px);
   margin-top: 0.5rem;
+}
+
+.hero-signature--with-qr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  width: min(100%, 520px);
 }
 
 .hero-signature__card {
@@ -505,14 +522,17 @@
 @media (max-width: 760px) {
   .hero {
     min-height: auto;
-    padding-bottom: 0;
+    padding: 5.25rem 0 0;
     overflow: hidden;
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero__stage {
     min-height: auto;
     align-items: flex-start;
-    width: min(100% - 1.5rem, 1200px);
+    width: min(100% - 1.25rem, 1200px);
+    padding-top: 0.15rem;
   }
 
   .hero__slide {
@@ -545,6 +565,7 @@
     min-height: auto;
     width: 100%;
     max-width: 100%;
+    gap: 0.85rem;
   }
 
   .hero-grid--plan {
@@ -554,24 +575,38 @@
   }
 
   .hero-photo,
+  .hero-photo--compact,
   .hero-photo--cutout-sm {
-    width: min(100%, 360px);
+    width: min(78%, 300px);
     max-width: 100%;
     margin-inline: auto;
     justify-self: center;
   }
 
   .hero-photo img,
+  .hero-photo--compact img,
   .hero-photo--cutout-sm img {
-    max-height: 480px;
+    max-height: min(52vh, 380px);
     width: 100%;
     height: auto;
   }
 
   .hero-copy {
-    padding-top: 0.5rem;
+    padding-top: 0.35rem;
     max-width: 100%;
     min-width: 0;
+    text-align: center;
+  }
+
+  .hero-copy--lead {
+    align-items: center;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-eyebrow--lead {
+    justify-content: center;
   }
 
   .hero-title,
@@ -581,11 +616,18 @@
 
   .hero-title--lead {
     max-width: 100%;
-    font-size: clamp(2.35rem, 10vw, 3.2rem);
+    font-size: clamp(2.15rem, 9.5vw, 3rem);
+    text-align: center;
+  }
+
+  .hero-tagline {
+    text-align: center;
+    margin-inline: auto;
   }
 
   .hero-actions {
     width: 100%;
+    justify-content: center;
   }
 
   .hero-actions .btn {
@@ -593,18 +635,33 @@
     justify-content: center;
   }
 
-  .hero-signature {
+  .hero-signature,
+  .hero-signature--with-qr {
     justify-self: stretch;
     width: 100%;
     max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-bottom: clamp(1rem, 4vh, 2rem);
   }
 
   .hero-signature__card {
     width: 100%;
   }
 
+  .hero-signature__script {
+    font-size: 1.35rem;
+  }
+
+  .hero-qr {
+    margin-bottom: 0.5rem;
+  }
+
   .hero-pills {
     width: 100%;
+    justify-content: center;
   }
 
   .hero-pill {
@@ -618,5 +675,29 @@
 
   .hero-plan-icon {
     width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-photo,
+  .hero-photo--compact,
+  .hero-photo--cutout-sm {
+    width: min(85%, 260px);
+  }
+
+  .hero-title--lead {
+    font-size: clamp(1.95rem, 9vw, 2.5rem);
+  }
+
+  .hero-signature__card {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .hero-signature__script {
+    border-right: 0;
+    padding-right: 0;
+    width: 100%;
+    text-align: center;
   }
 }
