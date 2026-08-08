@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  GeoJSON,
+  useMap,
+  AttributionControl,
+} from "react-leaflet";
 import L from "leaflet";
 import type { FeatureCollection, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
@@ -19,7 +25,7 @@ function FitBounds({ data }: { data: WardGeo }) {
   useEffect(() => {
     const layer = L.geoJSON(data as Geometry);
     try {
-      map.fitBounds(layer.getBounds(), { padding: [28, 28], maxZoom: 12 });
+      map.fitBounds(layer.getBounds(), { padding: [36, 36], maxZoom: 12 });
     } catch {
       map.setView([43.94, -78.87], 11);
     }
@@ -27,11 +33,14 @@ function FitBounds({ data }: { data: WardGeo }) {
   return null;
 }
 
-const wardStyle = {
+const wardStyle: L.PathOptions = {
   color: "#06152f",
   weight: 3,
+  opacity: 1,
   fillColor: "#c47a4a",
   fillOpacity: 0.38,
+  lineJoin: "round",
+  lineCap: "round",
 };
 
 export function WardMap({
@@ -69,8 +78,10 @@ export function WardMap({
         center={[43.94, -78.87]}
         zoom={11}
         scrollWheelZoom={false}
+        attributionControl={false}
         className="ward-map__canvas"
       >
+        <AttributionControl prefix="Leaflet" position="bottomright" />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -79,8 +90,7 @@ export function WardMap({
         <FitBounds data={data} />
       </MapContainer>
       <p className="ward-map__credit">
-        Data: City of Oshawa GIS (Wards &amp; Polls). Preview boundary — replace
-        with your official map link when ready.
+        Data: City of Oshawa GIS (Wards &amp; Polls)
       </p>
     </div>
   );
