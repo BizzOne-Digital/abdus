@@ -18,7 +18,6 @@
 .page-hero--wave .page-hero__bg {
   overflow: hidden;
   border-bottom: 0;
-  /* Leave room for white wave only */
   bottom: clamp(40px, 7vw, 72px);
 }
 
@@ -45,21 +44,24 @@
   transform: translateY(-2%);
 }
 
+/* Match header inset — never flush to viewport edges */
+.page-hero__inner.container,
 .page-hero__inner {
   position: relative;
   z-index: 2;
-  width: 100%;
-  max-width: 760px;
-  margin-left: 0;
+  width: min(100% - 2.5rem, var(--max-width));
+  max-width: min(720px, 100% - 2.5rem);
+  margin-inline: auto;
+  margin-left: auto;
   margin-right: auto;
-  padding: 0 clamp(1.25rem, 4vw, 0) 4.5rem clamp(2.5rem, 9vw, 6rem);
+  padding: 1.25rem 0 4.75rem;
+  box-sizing: border-box;
   text-align: left;
   align-self: flex-end;
 }
 
 .page-hero--wave .page-hero__inner {
-  /* Extra space so buttons clear the wave */
-  padding-bottom: clamp(5.5rem, 10vw, 7.5rem);
+  padding-bottom: clamp(5.75rem, 11vw, 7.75rem);
 }
 
 .page-hero__eyebrow {
@@ -138,16 +140,17 @@
     bottom: clamp(48px, 12vw, 72px);
   }
 
+  .page-hero__inner.container,
   .page-hero__inner {
-    max-width: 100%;
+    width: min(100% - 1.75rem, var(--max-width));
+    max-width: min(100% - 1.75rem, 720px);
+    margin-inline: auto;
+    padding: 0.75rem 0 4rem;
     min-width: 0;
-    padding: 0 0 3.75rem;
-    text-align: left;
-    width: 100%;
   }
 
   .page-hero--wave .page-hero__inner {
-    padding-bottom: 5.25rem;
+    padding-bottom: 5.5rem;
   }
 
   .page-hero__eyebrow {
