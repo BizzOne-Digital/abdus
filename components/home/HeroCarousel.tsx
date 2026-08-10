@@ -5,10 +5,9 @@ import {
   useEffect,
   useRef,
   useState,
-  type PointerEvent as ReactPointerEvent,
 } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import {
   IconDollar,
@@ -26,18 +25,24 @@ type SlideId = 0 | 1 | 2;
 
 const AUTO_MS = 7000;
 const SLIDE_COUNT = 3;
+const SWIPE_OFFSET = 64;
+const SWIPE_CONFIDENCE = 6500;
 
 const slideVariants = {
   enter: (dir: number) => ({
-    x: dir >= 0 ? "70%" : "-70%",
+    x: dir >= 0 ? "78%" : "-78%",
     opacity: 0,
   }),
   center: { x: 0, opacity: 1 },
   exit: (dir: number) => ({
-    x: dir >= 0 ? "-45%" : "45%",
+    x: dir >= 0 ? "-55%" : "55%",
     opacity: 0,
   }),
 };
+
+function swipePower(offset: number, velocity: number) {
+  return Math.abs(offset) * velocity;
+}
 
 const staggerParent = {
   hidden: {},
@@ -89,8 +94,8 @@ export function HeroCarousel({
   const [index, setIndex] = useState<SlideId>(0);
   const [direction, setDirection] = useState(1);
   const [paused, setPaused] = useState(false);
-  const touchX = useRef<number | null>(null);
   const liveRef = useRef<HTMLDivElement>(null);
+  const resumeTimer = useRef<number | null>(null);
 
   const goTo = useCallback(
     (next: SlideId, dir?: number) => {
@@ -122,18 +127,42 @@ export function HeroCarousel({
     }
   }, [index]);
 
-  const onPointerDown = (e: ReactPointerEvent) => {
-    touchX.current = e.clientX;
-  };
+  useEffect(() => {
+    return () => {
+      if (resumeTimer.current != null) window.clearTimeout(resumeTimer.current);
+    };
+  }, []);
 
-  const onPointerUp = (e: ReactPointerEvent) => {
-    if (touchX.current == null) return;
-    const dx = e.clientX - touchX.current;
-    touchX.current = null;
-    if (Math.abs(dx) < 48) return;
-    if (dx < 0) next();
-    else prev();
-  };
+  const pauseAutoplay = useCallback(() => {
+    if (resumeTimer.current != null) {
+      window.clearTimeout(resumeTimer.current);
+      resumeTimer.current = null;
+    }
+    setPaused(true);
+  }, []);
+
+  const resumeAutoplaySoon = useCallback(() => {
+    if (resumeTimer.current != null) window.clearTimeout(resumeTimer.current);
+    resumeTimer.current = window.setTimeout(() => {
+      setPaused(false);
+      resumeTimer.current = null;
+    }, 500);
+  }, []);
+
+  const onDragEnd = useCallback(
+    (_: unknown, info: PanInfo) => {
+      const { offset, velocity } = info;
+      const power = swipePower(offset.x, velocity.x);
+
+      if (offset.x < -SWIPE_OFFSET || power < -SWIPE_CONFIDENCE) {
+        next();
+      } else if (offset.x > SWIPE_OFFSET || power > SWIPE_CONFIDENCE) {
+        prev();
+      }
+      resumeAutoplaySoon();
+    },
+    [next, prev, resumeAutoplaySoon],
+  );
 
   return (
     <section
@@ -141,16 +170,14 @@ export function HeroCarousel({
       className="hero"
       aria-roledescription="carousel"
       aria-label="Campaign highlights"
-      onMouseEnter={() => setPaused(true)}
+      onMouseEnter={pauseAutoplay}
       onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
+      onFocusCapture={pauseAutoplay}
       onBlurCapture={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) {
           setPaused(false);
         }
       }}
-      onPointerDown={onPointerDown}
-      onPointerUp={onPointerUp}
     >
       <div className="hero__bg" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -174,9 +201,15 @@ export function HeroCarousel({
             animate="center"
             exit={reduced ? undefined : "exit"}
             transition={{
-              duration: reduced ? 0 : 0.72,
+              duration: reduced ? 0 : 0.45,
               ease: [0.22, 1, 0.36, 1],
             }}
+            drag={reduced ? false : "x"}
+            dragDirectionLock
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.22}
+            onDragStart={pauseAutoplay}
+            onDragEnd={onDragEnd}
           >
             {index === 0 && <SlideLeadership reduced={reduced} data={hero} />}
             {index === 1 && <SlideMeet reduced={reduced} data={heroMeet} />}
@@ -284,20 +317,25 @@ function SlideLeadership({
 
   return (
     <div className="hero-grid hero-grid--lead">
-      <motion.div
-        className="hero-photo hero-photo--compact"
-        initial={reduced ? false : { opacity: 0, x: -28 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={photo}
-          alt="A. Salam Shinwary, candidate for City Councillor, Ward 1 Oshawa"
-          width={560}
-          height={720}
-        />
-      </motion.div>
+      <div className="hero-lead-media">
+        <motion.div
+          className="hero-photo hero-photo--compact"
+          initial={reduced ? false : { opacity: 0, x: -28 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={photo}
+            alt="A. Salam Shinwary, candidate for City Councillor, Ward 1 Oshawa"
+            width={560}
+            height={720}
+          />
+        </motion.div>
+        <div className="hero-qr hero-qr--beside-photo">
+          <DonateQR size={72} label="Scan to donate" />
+        </div>
+      </div>
 
       <motion.div
         className="hero-copy hero-copy--lead"
@@ -330,7 +368,10 @@ function SlideLeadership({
         <motion.p className="hero-tagline" variants={staggerChild}>
           {data?.subtitle || "Listening. Leading. Delivering."}
         </motion.p>
-        <motion.div className="hero-actions" variants={staggerChild}>
+        <motion.div className="hero-actions hero-actions--lead-row" variants={staggerChild}>
+          <div className="hero-qr hero-qr--in-actions">
+            <DonateQR size={88} label="Scan to donate" />
+          </div>
           <Link
             href={data?.buttonLink || "/vision"}
             className="btn btn--primary btn--pill"
@@ -338,14 +379,9 @@ function SlideLeadership({
             {data?.buttonLabel || "Our Priorities"}{" "}
             <span className="btn__chevron" aria-hidden="true" />
           </Link>
-          <div className="hero-actions__donate">
-            <Link href="/donate" className="btn btn--ghost btn--pill">
-              Donate
-            </Link>
-            <div className="hero-qr">
-              <DonateQR size={100} label="Scan to donate" />
-            </div>
-          </div>
+          <Link href="/donate" className="btn btn--ghost btn--pill">
+            Donate
+          </Link>
         </motion.div>
       </motion.div>
     </div>
@@ -370,7 +406,7 @@ function SlideMeet({
   return (
     <div className="hero-grid hero-grid--meet">
       <motion.div
-        className="hero-copy hero-copy--wide hero-copy--meet"
+        className="hero-copy hero-copy--meet"
         variants={reduced ? undefined : staggerParent}
         initial={reduced ? false : "hidden"}
         animate="show"
@@ -380,14 +416,8 @@ function SlideMeet({
           <MapleLeaf />
         </motion.p>
         <motion.h2 className="hero-title hero-title--alt" variants={staggerChild}>
-          <span className="hero-title__line">
-            {(data?.title || "Elect Shinwary")
-              .replace(/\s*Meet\s*&\s*/i, "")
-              .replace(/\s*Meet\s+and\s+/i, "")
-              .replace(/\s*Shinwary\s*$/i, "")
-              .trim()}{" "}
-            <span className="accent">Shinwary</span>
-          </span>
+          <span className="hero-title__line">Elect</span>
+          <span className="hero-title__line accent">Shinwary</span>
         </motion.h2>
         <motion.p className="hero-support" variants={staggerChild}>
           {data?.body ||
