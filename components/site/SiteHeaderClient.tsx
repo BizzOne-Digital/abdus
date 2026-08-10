@@ -67,6 +67,15 @@ export function SiteHeaderClient({ settings }: { settings: HeaderSettings }) {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   const close = () => setOpen(false);
 
   return (
@@ -125,6 +134,17 @@ export function SiteHeaderClient({ settings }: { settings: HeaderSettings }) {
         className={`mobile-menu ${open ? "is-open" : ""}`}
         hidden={!open}
       >
+        <div className="mobile-menu__bar">
+          <p className="mobile-menu__title">Menu</p>
+          <button
+            type="button"
+            className="mobile-menu__close"
+            aria-label="Close menu"
+            onClick={close}
+          >
+            <IconClose />
+          </button>
+        </div>
         <nav aria-label="Mobile">
           <ul>
             {NAV.map((item) => (

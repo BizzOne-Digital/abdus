@@ -137,8 +137,9 @@
   pointer-events: auto;
   position: fixed;
   inset: 0;
-  z-index: 90;
-  padding: 5.75rem 1.15rem 2rem;
+  z-index: 110;
+  padding: max(1rem, env(safe-area-inset-top)) 1.15rem
+    max(2rem, env(safe-area-inset-bottom));
   background: rgba(6, 21, 47, 0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -152,6 +153,46 @@
 
 .mobile-menu.is-open {
   display: block;
+}
+
+.mobile-menu__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobile-menu__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--light-blue);
+}
+
+.mobile-menu__close {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--white);
+  border-radius: 12px;
+  border: 1px solid rgba(141, 220, 255, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mobile-menu__close:hover,
+.mobile-menu__close:focus-visible {
+  border-color: rgba(255, 138, 61, 0.65);
+  background: rgba(241, 90, 58, 0.18);
+  color: #fff;
 }
 
 .mobile-menu nav {
