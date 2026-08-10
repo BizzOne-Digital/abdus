@@ -1,11 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { SectionHeading } from "./SectionHeading";
-import { DonateQR } from "@/components/DonateQR";
-import { IconLeaf, IconPeople, IconRoad } from "@/components/icons";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import type { CmsSection } from "@/lib/cms";
 import "./Ward1Section.css";
@@ -22,27 +19,36 @@ const WardMap = dynamic(
   },
 );
 
-const ICONS = [IconRoad, IconLeaf, IconPeople];
-
-const DEFAULT_POINTS = [
-  { title: "Safe Streets", body: "Roads, lighting and school routes." },
-  { title: "Green Spaces", body: "Parks and welcoming community spaces." },
-  { title: "Strong Services", body: "Reliable neighbourhood services." },
-];
+const WARD_LOOKUP = "https://map.oshawa.ca/2018WardLookup/";
+const WARD_FINDER =
+  "https://www.oshawa.ca/city-hall/elections/find-your-ward/";
 
 type Props = {
   data?: CmsSection;
 };
 
+function PinIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M12 22s7-7.2 7-12.2A7 7 0 0 0 5 9.8C5 14.8 12 22 12 22Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="9.5" r="2.4" fill="currentColor" />
+    </svg>
+  );
+}
+
 export function Ward1Section({ data }: Props) {
   const reduced = usePrefersReducedMotion();
-  const points = (data?.items?.length ? data.items : DEFAULT_POINTS).map(
-    (item, i) => ({
-      title: item.title || "",
-      body: item.body || "",
-      Icon: ICONS[i % ICONS.length],
-    }),
-  );
 
   return (
     <section id="ward1" className="section ward-section" aria-labelledby="ward-title">
@@ -57,63 +63,43 @@ export function Ward1Section({ data }: Props) {
           <WardMap />
         </motion.div>
 
-        <div className="ward-copy">
+        <motion.div
+          className="ward-copy"
+          initial={reduced ? false : { opacity: 0, y: 20 }}
+          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.55, delay: reduced ? 0 : 0.08 }}
+        >
           <SectionHeading
             id="ward-title"
-            eyebrow="Ward 1 · Oshawa"
-            title={
-              <>
-                Ward 1 is <span className="accent">Home</span>
-              </>
-            }
+            eyebrow="Know Your Ward"
+            title="Are You in Ward 1?"
             lead={
               data?.body ||
-              "North Oshawa needs a councillor who shows up and takes your voice to City Hall."
+              "Ward 1 covers the northern area of Oshawa. Not sure if you're included? Use the map or check the official ward finder."
             }
           />
 
-          <ul className="ward-points">
-            {points.map((item, i) => (
-              <motion.li
-                key={item.title}
-                initial={reduced ? false : { opacity: 0, x: 16 }}
-                whileInView={reduced ? undefined : { opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ delay: reduced ? 0 : i * 0.06, duration: 0.4 }}
-              >
-                <div className="ward-point">
-                  <div className="ward-point__icon">
-                    <item.Icon size={22} />
-                  </div>
-                  <div>
-                    <h3>{item.title}</h3>
-                    <p>{item.body}</p>
-                  </div>
-                </div>
-              </motion.li>
-            ))}
-          </ul>
-
-          <motion.div
-            className="ward-donate-row"
-            initial={reduced ? false : { opacity: 0, y: 16 }}
-            whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-          >
-            <DonateQR size={96} label="Donate" />
-            <div className="ward-donate-row__copy">
-              <h3>Support the campaign</h3>
-              <p>
-                Scan the QR or use Interac e-Transfer to{" "}
-                <strong>Vote4shinwary@gmail.com</strong>
-              </p>
-              <Link href="/donate" className="btn btn--primary btn--pill">
-                How to donate
-              </Link>
-            </div>
-          </motion.div>
-        </div>
+          <div className="ward-cta-row">
+            <a
+              href={WARD_LOOKUP}
+              className="btn btn--primary ward-cta-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <PinIcon />
+              Check My Address
+            </a>
+            <a
+              href={WARD_FINDER}
+              className="btn ward-cta-btn ward-cta-btn--outline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Official Ward Finder
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

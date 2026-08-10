@@ -166,3 +166,21 @@ export function IconClose(props: IconProps) {
     </svg>
   );
 }
+
+export function IconMap(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M9 4.5 3.5 6.5v13L9 17.5l6 2 5.5-2v-13L15 6.5 9 4.5Z" />
+      <path d="M9 4.5v13M15 6.5v13" />
+    </svg>
+  );
+}
+
+export function IconThumbsUp(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M8 11v9H5.5A1.5 1.5 0 0 1 4 18.5v-6A1.5 1.5 0 0 1 5.5 11H8Z" />
+      <path d="M8 20h7.2a2 2 0 0 0 1.95-1.55l1.1-4.8A1.75 1.75 0 0 0 16.5 11H13l.7-3.3A2.1 2.1 0 0 0 11.65 5.1L8 11" />
+    </svg>
+  );
+}

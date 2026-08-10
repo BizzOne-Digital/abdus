@@ -23,8 +23,6 @@ export default async function VisionPage() {
         image={hero?.image || "/images/hero-bg.jpg"}
         ctaHref={hero?.buttonLink || "/contact"}
         ctaLabel={hero?.buttonLabel || "Join the Campaign"}
-        withWave
-        waveColor="#ffffff"
       />
       <VisionPageSections
         intro={sectionByKey(sections, "intro")}

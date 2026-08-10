@@ -21,8 +21,6 @@ export default async function Ward1Page() {
         image="/images/hero-bg.jpg"
         ctaHref={hero?.buttonLink || "/donate"}
         ctaLabel={hero?.buttonLabel || "Donate"}
-        withWave
-        waveColor="#ffffff"
       />
       <Ward1Section data={sectionByKey(sections, "ward1")} />
       <CommitmentStrip />

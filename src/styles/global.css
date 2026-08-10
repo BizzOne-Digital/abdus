@@ -13,9 +13,9 @@
   --navy-soft: #0a2348;
 
   /* Typography */
-  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
-  --font-quote: "Source Serif 4", Georgia, serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-quote: "Playfair Display", Georgia, "Times New Roman", serif;
 
   /* Layout */
   --max-width: 1180px;

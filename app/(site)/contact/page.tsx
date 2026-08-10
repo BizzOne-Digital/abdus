@@ -2,6 +2,7 @@ import { PageHero } from "@/components/home/PageHero";
 import { accentLastWord } from "@/lib/accentTitle";
 import { CommitmentStrip } from "@/components/home/CommitmentStrip";
 import { IconMail, IconPhone } from "@/components/icons";
+import Link from "next/link";
 import {
   getCmsPage,
   getCmsSettings,
@@ -18,7 +19,7 @@ export default async function ContactPage() {
   const hero = sectionByKey(sections, "hero");
   const details = sectionByKey(sections, "details");
   const involve = sectionByKey(sections, "involve");
-  const email = settings.email || "salam.jan111@gmail.com";
+  const email = "Vote4shinwary@gmail.com";
   const phone = settings.phone || "416 419 2457";
   const tel = String(phone).replace(/\s/g, "");
 
@@ -34,8 +35,6 @@ export default async function ContactPage() {
         image="/images/hero-bg.jpg"
         ctaHref={hero?.buttonLink || `mailto:${email}`}
         ctaLabel={hero?.buttonLabel || "Email Shinwary"}
-        withWave
-        waveColor="#ffffff"
       />
 
       <section
@@ -80,9 +79,9 @@ export default async function ContactPage() {
               >
                 {involve?.buttonLabel || "Join the Campaign"}
               </a>
-              <a href="/donate" className="btn btn--ghost-dark btn--pill">
+              <Link href="/donate" className="btn btn--ghost-dark btn--pill">
                 Donate
-              </a>
+              </Link>
             </div>
           </article>
         </div>

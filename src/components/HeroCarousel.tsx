@@ -335,7 +335,7 @@ function SlideMeet({ reduced }: { reduced: boolean }) {
         </motion.p>
         <motion.h2 className="hero-title hero-title--alt" variants={staggerChild}>
           <span className="hero-title__line">
-            Meet &amp; Elect <span className="accent">Shinwary</span>
+            Elect <span className="accent">Shinwary</span>
           </span>
         </motion.h2>
         <motion.p className="hero-support" variants={staggerChild}>

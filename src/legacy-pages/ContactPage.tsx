@@ -15,7 +15,7 @@ export function ContactPage() {
           </>
         }
         lead="Your voice. Your neighbourhood. Your future. Reach out and join the campaign."
-        ctaHref="mailto:salam.jan111@gmail.com"
+        ctaHref="mailto:Vote4shinwary@gmail.com"
         ctaLabel="Email Shinwary"
       />
 
@@ -29,9 +29,9 @@ export function ContactPage() {
             </p>
             <ul className="contact-card__list">
               <li>
-                <a href="mailto:salam.jan111@gmail.com">
+                <a href="mailto:Vote4shinwary@gmail.com">
                   <IconMail size={20} />
-                  <span>salam.jan111@gmail.com</span>
+                  <span>Vote4shinwary@gmail.com</span>
                 </a>
               </li>
               <li>
@@ -49,7 +49,7 @@ export function ContactPage() {
               Help move Ward 1 forward — share the campaign, talk with neighbours,
               and stay connected for updates.
             </p>
-            <a href="mailto:salam.jan111@gmail.com" className="btn btn--primary btn--pill">
+            <a href="mailto:Vote4shinwary@gmail.com" className="btn btn--primary btn--pill">
               Join the Campaign
             </a>
           </LiquidGlass>

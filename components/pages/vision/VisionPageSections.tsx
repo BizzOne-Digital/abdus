@@ -7,7 +7,8 @@ import {
   IconDollar,
   IconHome,
   IconPeople,
-  IconShield,
+  IconMap,
+  IconThumbsUp,
   IconVisible,
   IconUpdates,
   IconAccountable,
@@ -17,13 +18,6 @@ import type { CmsSection } from "@/lib/cms";
 import "../shared/inner-sections.css";
 import "./vision-page.css";
 
-const ICON_MAP = {
-  dollar: IconDollar,
-  shield: IconShield,
-  home: IconHome,
-  people: IconPeople,
-} as const;
-
 const APPROACH_ICONS = [IconVisible, IconUpdates, IconAccountable];
 
 const DEFAULT_INTRO = {
@@ -32,29 +26,35 @@ const DEFAULT_INTRO = {
   lead:
     "Ward 1 doesn't need more promises — it needs a councillor who understands budgets, delivers projects and stays accountable between elections.",
   body:
-    "Shinwary's plan is built on four practical priorities backed by 15+ years of project and budget experience. Every proposal is measured against one question: does this improve everyday life in North Oshawa?",
+    "Shinwary's plan is built on practical priorities backed by 15+ years of project and budget experience. Every proposal is measured against one question: does this improve everyday life in North Oshawa?",
 };
 
-const DEFAULT_DETAILS = [
+/** Text + icons from “What I Stand For” priorities layout */
+const STAND_FOR = [
   {
     title: "Responsible Spending",
-    body: "Audit city spending with a neighbour's eye. Cut waste before raising taxes. Every dollar should show up as better roads, safer intersections or stronger services — not bureaucracy.",
-    icon: "dollar",
+    body: "Every dollar matters. Transparent budgeting that protects taxpayers.",
+    Icon: IconDollar,
   },
   {
-    title: "Safer Roads & Streets",
-    body: "Prioritize Conlin Road, school-zone safety and lighting on routes families use daily. Work with staff on data-driven fixes, not endless studies.",
-    icon: "shield",
+    title: "Improve Roads & Traffic",
+    body: "Infrastructure improvements before population growth overtakes us.",
+    Icon: IconMap,
   },
   {
-    title: "Fair Property Taxes",
-    body: "Transparent budgets with clear explanations. Growth should not automatically mean higher tax bills for existing homeowners.",
-    icon: "home",
+    title: "Lower Property Taxes",
+    body: "Smart budgeting. Better value. Your money, working harder.",
+    Icon: IconHome,
   },
   {
-    title: "Responsive Service",
-    body: "Return calls. Attend meetings. Publish monthly updates so Ward 1 always knows what their councillor is working on.",
-    icon: "people",
+    title: "Listening. Serving. Delivering.",
+    body: "You speak. I act. Accessible and accountable to every Ward 1 resident.",
+    Icon: IconPeople,
+  },
+  {
+    title: "Dog Off-Leash Parks",
+    body: "More space for Ward 1 families and their pets to enjoy.",
+    Icon: IconThumbsUp,
   },
 ];
 
@@ -87,7 +87,7 @@ type Props = {
   approach?: CmsSection;
 };
 
-export function VisionPageSections({ intro, priorities, approach }: Props) {
+export function VisionPageSections({ intro, approach }: Props) {
   const reduced = usePrefersReducedMotion();
 
   const introData = {
@@ -96,29 +96,6 @@ export function VisionPageSections({ intro, priorities, approach }: Props) {
     lead: intro?.body?.split("\n\n")[0] || DEFAULT_INTRO.lead,
     body: intro?.body?.split("\n\n")[1] || DEFAULT_INTRO.body,
   };
-
-  const priorityList: PriorityItem[] = priorities?.length
-    ? priorities
-    : DEFAULT_DETAILS.map((d) => ({
-        title: d.title,
-        shortDescription: d.body,
-        icon: d.icon,
-      }));
-
-  const detailCards = priorityList.map((item, i) => {
-    const fallback = DEFAULT_DETAILS[i] || DEFAULT_DETAILS[0];
-    const iconKey = (item.icon || fallback.icon) as keyof typeof ICON_MAP;
-    const longBody =
-      item.detailSections?.find((s) => s.body)?.body ||
-      item.shortDescription ||
-      fallback.body;
-    return {
-      title: item.title || fallback.title,
-      body: longBody,
-      Icon: ICON_MAP[iconKey] || IconShield,
-      num: String(i + 1).padStart(2, "0"),
-    };
-  });
 
   const approachSteps = (approach?.items?.length ? approach.items : DEFAULT_APPROACH).map(
     (item, i) => ({
@@ -135,7 +112,11 @@ export function VisionPageSections({ intro, priorities, approach }: Props) {
           initial: { opacity: 0, y: 28 },
           whileInView: { opacity: 1, y: 0 },
           viewport: { once: true, amount: 0.2 as const },
-          transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+          transition: {
+            duration: 0.55,
+            delay,
+            ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+          },
         };
 
   const slideIn = (delay = 0, x = 24) =>
@@ -145,13 +126,19 @@ export function VisionPageSections({ intro, priorities, approach }: Props) {
           initial: { opacity: 0, x },
           whileInView: { opacity: 1, x: 0 },
           viewport: { once: true, amount: 0.25 as const },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+          transition: {
+            duration: 0.6,
+            delay,
+            ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+          },
         };
 
   return (
     <>
-      {/* Intro — white */}
-      <section className="inner-section inner-section--white vision-intro" aria-labelledby="vision-intro-title">
+      <section
+        className="inner-section inner-section--white vision-intro"
+        aria-labelledby="vision-intro-title"
+      >
         <div className="container vision-intro__layout">
           <SectionHeading
             id="vision-intro-title"
@@ -161,7 +148,7 @@ export function VisionPageSections({ intro, priorities, approach }: Props) {
           />
           <motion.div className="vision-intro__aside" {...slideIn(0.1, 32)}>
             <div className="vision-intro__stat">
-              <span className="vision-intro__stat-num">4</span>
+              <span className="vision-intro__stat-num">{STAND_FOR.length}</span>
               <span className="vision-intro__stat-label">Core priorities</span>
             </div>
             <p className="inner-section__text">{introData.body}</p>
@@ -169,47 +156,42 @@ export function VisionPageSections({ intro, priorities, approach }: Props) {
         </div>
       </section>
 
-      {/* Detailed priorities — navy */}
-      <section className="inner-section inner-section--navy vision-details" aria-labelledby="vision-details-title">
+      {/* Priorities — ss2 text/colors, ss3 card containers */}
+      <section
+        className="inner-section inner-section--ivory vision-details"
+        aria-labelledby="vision-details-title"
+      >
         <div className="container">
           <SectionHeading
             id="vision-details-title"
-            eyebrow="The plan"
-            title={
-              <>
-                What Ward 1 gets <span className="accent">done</span>
-              </>
-            }
-            lead="Each priority includes concrete actions — not vague campaign language."
+            className="vision-details__heading"
+            align="left"
+            eyebrow="What I Stand For"
+            title="My Priorities for a Better Oshawa"
           />
 
-          <div className="vision-details__list">
-            {detailCards.map((card, i) => (
+          <div className="vision-priority-grid">
+            {STAND_FOR.map((card, i) => (
               <motion.article
                 key={card.title}
-                className={`vision-details__row vision-details__row--${i % 2}`}
-                {...fadeUp(i * 0.08)}
+                className="vision-priority-card"
+                {...fadeUp(i * 0.07)}
               >
-                <span className="vision-details__num" aria-hidden="true">
-                  {card.num}
-                </span>
-                <div className="vision-details__card">
-                  <div className="vision-details__card-head">
-                    <div className="inner-card__icon">
-                      <card.Icon size={24} />
-                    </div>
-                    <h3>{card.title}</h3>
-                  </div>
-                  <p>{card.body}</p>
+                <div className="vision-priority-card__icon" aria-hidden="true">
+                  <card.Icon size={22} />
                 </div>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
               </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Approach — ivory */}
-      <section className="inner-section inner-section--ivory vision-approach" aria-labelledby="vision-approach-title">
+      <section
+        className="inner-section inner-section--white vision-approach"
+        aria-labelledby="vision-approach-title"
+      >
         <div className="container">
           <SectionHeading
             id="vision-approach-title"
@@ -242,7 +224,8 @@ export function VisionPageSections({ intro, priorities, approach }: Props) {
             <div className="page-cta-band__text">
               <h3>Join the campaign for Ward 1</h3>
               <p>
-                Volunteer, share the message or tell us what matters most on your street.
+                Volunteer, share the message or tell us what matters most on your
+                street.
               </p>
             </div>
             <Link href="/contact" className="btn btn--primary btn--pill">

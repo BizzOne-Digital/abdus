@@ -13,7 +13,7 @@ type Props = {
 };
 
 export function ClosingCTA({
-  email = "salam.jan111@gmail.com",
+  email = "Vote4shinwary@gmail.com",
   phone = "416 419 2457",
   data,
 }: Props) {

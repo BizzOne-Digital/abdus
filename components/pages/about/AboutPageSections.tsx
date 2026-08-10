@@ -28,24 +28,24 @@ const DEFAULT_STORY = {
 
 const DEFAULT_TIMELINE = [
   {
-    year: "Education",
-    title: "Foundation in service",
-    body: "Environmental Management and Paralegal studies.",
+    year: "2010",
+    body: "Began working with local government agencies on community development projects.",
   },
   {
-    year: "15+ Years",
-    title: "Led across sectors",
-    body: "Projects and budgets in government, non-profit and private work.",
+    year: "2015",
+    body: "Led multiple infrastructure and budget transparency initiatives in Oshawa.",
   },
   {
-    year: "Community",
-    title: "Showed up for neighbours",
-    body: "Listening and advocacy across North Oshawa.",
+    year: "2019",
+    body: "Recognized for outstanding community service and resident advocacy in Ward 1.",
+  },
+  {
+    year: "2023",
+    body: "Launched grassroots campaign to bring real change to Ward 1 residents.",
   },
   {
     year: "2026",
-    title: "Ready for Ward 1",
-    body: "Visible representation. Monthly updates. Results that matter.",
+    body: "Running for Ward 1 Councillor. Election Day is October 26, 2026.",
   },
 ];
 
@@ -86,19 +86,7 @@ export function AboutPageSections({ story, timeline, values, quote }: Props) {
     image: story?.image || DEFAULT_STORY.image,
   };
 
-  const timelineItems = timeline?.items?.length
-    ? timeline.items
-    : DEFAULT_TIMELINE.map((t) => ({
-        title: t.year,
-        subtitle: t.title,
-        body: t.body,
-      }));
-
-  const milestones = timelineItems.map((item, i) => ({
-    year: item.title || DEFAULT_TIMELINE[i]?.year || "",
-    title: item.subtitle || DEFAULT_TIMELINE[i]?.title || "",
-    body: item.body || DEFAULT_TIMELINE[i]?.body || "",
-  }));
+  const milestones = DEFAULT_TIMELINE;
 
   const valueCards = (values?.items?.length ? values.items : DEFAULT_VALUES).map(
     (item, i) => ({
@@ -158,31 +146,27 @@ export function AboutPageSections({ story, timeline, values, quote }: Props) {
         </div>
       </section>
 
-      {/* Timeline — navy */}
-      <section className="inner-section inner-section--navy about-timeline" aria-labelledby="about-timeline-title">
+      {/* Track record — ss2 pattern */}
+      <section
+        className="inner-section inner-section--white about-timeline"
+        aria-labelledby="about-timeline-title"
+      >
         <div className="container">
           <SectionHeading
             id="about-timeline-title"
-            eyebrow={timeline?.subtitle || "The path here"}
-            title={timeline?.title || "Experience that earns trust."}
-            lead={
-              timeline?.body ||
-              "A record of education, leadership and community — not slogans."
-            }
+            className="about-timeline__heading"
+            title={timeline?.title || "A Track Record of Service"}
           />
 
-          <ol className="about-timeline__list">
+          <ol className="about-track__list">
             {milestones.map((item, i) => (
               <motion.li
                 key={item.year + i}
-                className="about-timeline__item"
-                {...fadeUp(i * 0.07)}
+                className="about-track__item"
+                {...fadeUp(i * 0.06)}
               >
-                <span className="about-timeline__year">{item.year}</span>
-                <div className="about-timeline__content inner-card">
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </div>
+                <span className="about-track__year">{item.year}</span>
+                <p className="about-track__text">{item.body}</p>
               </motion.li>
             ))}
           </ol>

@@ -12,10 +12,10 @@
   --ivory: #f7f3ea;
   --navy-soft: #0a2348;
 
-  /* Typography */
-  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
-  --font-quote: "Source Serif 4", Georgia, serif;
+  /* Typography — high-contrast Didone serif sitewide */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-quote: "Playfair Display", Georgia, "Times New Roman", serif;
 
   /* Layout */
   --max-width: 1180px;
@@ -109,8 +109,8 @@ h3,
 h4 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: 0.02em;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   margin: 0;
 }
 
@@ -154,7 +154,7 @@ p {
   }
 
   .container {
-    width: min(100% - 1.25rem, var(--max-width));
+    width: min(100% - 2.3rem, var(--max-width));
   }
 
   .section {

@@ -24,6 +24,7 @@
     "react-qr-code": "^2.2.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.6",
     "@types/bcryptjs": "^2.4.6",
     "@types/formidable": "^3.4.5",
     "@types/geojson": "^7946.0.16",
@@ -31,6 +32,8 @@
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.22",
     "tsx": "^4.23.9",
     "typescript": "~6.0.2"
   }

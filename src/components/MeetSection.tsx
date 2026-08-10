@@ -74,9 +74,8 @@ export function MeetSection() {
             </div>
 
             <p className="meet-intro">
-              Like many newcomers, Shinwary rebuilt his life in Canada from the
-              beginning. That journey shaped a practical leader grounded in
-              perseverance, responsibility and respect for community.
+              Shinwary rebuilt his life in Canada through hard work and
+              education. That journey shaped a practical leader.
             </p>
 
             <div className="meet-cards">

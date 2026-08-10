@@ -49,7 +49,7 @@ export async function getCmsSettings() {
   const settings: any = await Settings.findOne({ key: "site" }).lean();
   return (
     (settings && JSON.parse(JSON.stringify(settings))) || {
-      email: "salam.jan111@gmail.com",
+      email: "Vote4shinwary@gmail.com",
       phone: "416 419 2457",
       logo: "/images/logo.png",
       siteName: "Vote Shinwary",

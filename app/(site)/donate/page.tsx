@@ -21,8 +21,6 @@ export default function DonatePage() {
         image="/images/hero-bg.jpg"
         ctaHref="mailto:Vote4shinwary@gmail.com"
         ctaLabel="Email to Donate"
-        withWave
-        waveColor="#ffffff"
       />
       <DonatePageContent />
     </>

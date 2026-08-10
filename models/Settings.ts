@@ -3,7 +3,7 @@ import mongoose, { Schema, models, model } from "mongoose";
 const SettingsSchema = new Schema(
   {
     key: { type: String, required: true, unique: true, default: "site" },
-    email: { type: String, default: "salam.jan111@gmail.com" },
+    email: { type: String, default: "Vote4shinwary@gmail.com" },
     phone: { type: String, default: "416 419 2457" },
     address: { type: String, default: "Ward 1, Oshawa, Ontario" },
     facebook: { type: String, default: "" },

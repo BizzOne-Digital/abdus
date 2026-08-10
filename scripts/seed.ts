@@ -24,7 +24,7 @@ async function seed() {
     { key: "site" },
     {
       key: "site",
-      email: "salam.jan111@gmail.com",
+      email: "Vote4shinwary@gmail.com",
       phone: "416 419 2457",
       address: "Ward 1, Oshawa, Ontario",
       logo: "/images/logo.png",
@@ -70,7 +70,7 @@ async function seed() {
         },
         {
           key: "hero-meet",
-          title: "Meet & Elect Shinwary",
+          title: "Elect Shinwary",
           subtitle: "Candidate Profile",
           body: "Experience shaped by service. Leadership focused on Ward 1.",
           image: "/images/candidate-hero.png",
@@ -102,7 +102,7 @@ async function seed() {
           key: "meet",
           title: "Experience that serves.",
           subtitle: "Meet Shinwary",
-          body: "Like many newcomers, Shinwary rebuilt his life in Canada from the beginning. That journey shaped a practical leader grounded in perseverance, responsibility and respect for community.",
+          body: "Shinwary rebuilt his life in Canada through hard work and education. That journey shaped a practical leader.",
           image: "/images/candidate-podium.jpg",
           order: 5,
           items: [
@@ -244,30 +244,30 @@ async function seed() {
         },
         {
           key: "timeline",
-          title: "Experience that earns trust.",
-          subtitle: "The path here",
-          body: "A record of education, leadership and community — not slogans.",
+          title: "A Track Record of Service",
+          subtitle: "",
+          body: "",
           order: 3,
           items: [
             {
-              title: "Education",
-              subtitle: "Built a foundation in service",
-              body: "Environmental Management and Paralegal studies — training grounded in policy, compliance and real-world problem solving.",
+              title: "2010",
+              body: "Began working with local government agencies on community development projects.",
             },
             {
-              title: "15+ Years",
-              subtitle: "Led across sectors",
-              body: "Project management, budgeting and team leadership in government, non-profit and private organizations across Canada.",
+              title: "2015",
+              body: "Led multiple infrastructure and budget transparency initiatives in Oshawa.",
             },
             {
-              title: "Community",
-              subtitle: "Showed up for neighbours",
-              body: "Volunteering, advocacy and listening sessions — building trust block by block in North Oshawa.",
+              title: "2019",
+              body: "Recognized for outstanding community service and resident advocacy in Ward 1.",
+            },
+            {
+              title: "2023",
+              body: "Launched grassroots campaign to bring real change to Ward 1 residents.",
             },
             {
               title: "2026",
-              subtitle: "Ready to serve Ward 1",
-              body: "Running to bring visible representation, responsible spending and a councillor who reports back every month.",
+              body: "Running for Ward 1 Councillor. Election Day is October 26, 2026.",
             },
           ],
         },
@@ -529,7 +529,7 @@ async function seed() {
           body: "Your voice. Your neighbourhood. Your future. Reach out and join the campaign.",
           image: "/images/hero-bg.jpg",
           buttonLabel: "Email Shinwary",
-          buttonLink: "mailto:salam.jan111@gmail.com",
+          buttonLink: "mailto:Vote4shinwary@gmail.com",
           order: 1,
         },
         {
@@ -543,7 +543,7 @@ async function seed() {
           title: "Get Involved",
           body: "Help move Ward 1 forward — share the campaign, talk with neighbours, and stay connected for updates.",
           buttonLabel: "Join the Campaign",
-          buttonLink: "mailto:salam.jan111@gmail.com",
+          buttonLink: "mailto:Vote4shinwary@gmail.com",
           order: 3,
         },
         {

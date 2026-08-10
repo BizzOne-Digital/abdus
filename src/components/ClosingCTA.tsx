@@ -26,9 +26,9 @@ export function ClosingCTA() {
 
           <ul className="closing__contacts">
             <li>
-              <a href="mailto:salam.jan111@gmail.com">
+              <a href="mailto:Vote4shinwary@gmail.com">
                 <IconMail size={18} />
-                <span>salam.jan111@gmail.com</span>
+                <span>Vote4shinwary@gmail.com</span>
               </a>
             </li>
             <li>

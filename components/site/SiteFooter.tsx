@@ -9,7 +9,7 @@ async function getSettings(): Promise<any> {
     (await Settings.findOne({ key: "site" }).lean()) || {
       siteName: "Vote Shinwary",
       logo: "/images/logo.png",
-      email: "salam.jan111@gmail.com",
+      email: "Vote4shinwary@gmail.com",
       phone: "416 419 2457",
       tagline: "Strong leadership. Better Oshawa.",
       facebook: "",
@@ -30,6 +30,7 @@ const NAV = [
 
 export async function SiteFooter() {
   const settings = await getSettings();
+  const email = "Vote4shinwary@gmail.com";
   const year = new Date().getFullYear();
 
   return (
@@ -73,7 +74,7 @@ export async function SiteFooter() {
           <h3 className="site-footer__heading">Contact</h3>
           <ul>
             <li>
-              <a href={`mailto:${settings.email}`}>{settings.email}</a>
+              <a href={`mailto:${email}`}>{email}</a>
             </li>
             <li>
               <a href={`tel:${String(settings.phone).replace(/\s/g, "")}`}>

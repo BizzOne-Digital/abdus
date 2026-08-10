@@ -277,7 +277,6 @@ function SlideLeadership({
   const photo =
     data?.items?.find((i) => i.key === "photo")?.image ||
     "/images/candidate-hero.png";
-  const signature = data?.items?.find((i) => i.key === "signature");
   const title = data?.title || "Strong Leadership. Better Oshawa.";
   const lines = title.includes(".")
     ? title.split(".").map((s) => s.trim()).filter(Boolean)
@@ -339,31 +338,16 @@ function SlideLeadership({
             {data?.buttonLabel || "Our Priorities"}{" "}
             <span className="btn__chevron" aria-hidden="true" />
           </Link>
-          <Link href="/donate" className="btn btn--ghost btn--pill">
-            Donate
-          </Link>
+          <div className="hero-actions__donate">
+            <Link href="/donate" className="btn btn--ghost btn--pill">
+              Donate
+            </Link>
+            <div className="hero-qr">
+              <DonateQR size={100} label="Scan to donate" />
+            </div>
+          </div>
         </motion.div>
       </motion.div>
-
-      <motion.aside
-        className="hero-signature hero-signature--with-qr"
-        initial={reduced ? false : { opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.28, duration: 0.55 }}
-      >
-        <LiquidGlass hover={false} className="hero-signature__card">
-          <span className="hero-signature__script" aria-hidden="true">
-            A. Salam Shinwary
-          </span>
-          <div className="hero-signature__text">
-            <strong>{signature?.title || "Vote A. Salam Shinwary"}</strong>
-            <span>{signature?.body || "A Strong Voice for Ward 1"}</span>
-          </div>
-        </LiquidGlass>
-        <div className="hero-qr">
-          <DonateQR size={100} label="Scan to donate" />
-        </div>
-      </motion.aside>
     </div>
   );
 }
@@ -397,10 +381,11 @@ function SlideMeet({
         </motion.p>
         <motion.h2 className="hero-title hero-title--alt" variants={staggerChild}>
           <span className="hero-title__line">
-            {(data?.title || "Meet & Elect Shinwary").replace(
-              /\s*Shinwary\s*$/i,
-              "",
-            )}{" "}
+            {(data?.title || "Elect Shinwary")
+              .replace(/\s*Meet\s*&\s*/i, "")
+              .replace(/\s*Meet\s+and\s+/i, "")
+              .replace(/\s*Shinwary\s*$/i, "")
+              .trim()}{" "}
             <span className="accent">Shinwary</span>
           </span>
         </motion.h2>
@@ -480,13 +465,10 @@ function SlidePlan({
           {data?.subtitle || "Priorities"}
           <MapleLeaf />
         </motion.p>
-        <motion.h2 className="hero-title hero-title--alt" variants={staggerChild}>
+        <motion.h2 className="hero-title hero-title--alt hero-title--plan" variants={staggerChild}>
+          <span className="hero-title__line">A Practical Plan</span>
           <span className="hero-title__line">
-            {(data?.title || "A Practical Plan for Ward 1").replace(
-              /\s*Ward 1\s*$/i,
-              "",
-            )}{" "}
-            <span className="accent">Ward 1</span>
+            for <span className="accent">Ward 1</span>
           </span>
         </motion.h2>
         <motion.p className="hero-support" variants={staggerChild}>
