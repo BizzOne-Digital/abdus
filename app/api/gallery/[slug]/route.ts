@@ -1,7 +1,7 @@
 import { connectDB } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth";
 import { fail, ok, parseJson } from "@/lib/api";
-import { sanitizeMongoUpdate } from "@/lib/sanitizeUpdate";
+import { applyNestedUpdate, buildSanitizedUpdate } from "@/lib/persistCms";
 import { revalidateGalleryPage } from "@/lib/revalidateSite";
 import { GalleryCategory } from "@/models/GalleryCategory";
 
@@ -30,19 +30,22 @@ export async function PUT(req: Request, ctx: Ctx) {
     const { slug } = await ctx.params;
     await connectDB();
     const body = await parseJson<Record<string, unknown>>(req);
-    const update = sanitizeMongoUpdate(body);
-    delete update.slug;
-    const item = await GalleryCategory.findOneAndUpdate(
-      { slug },
-      { $set: update },
-      {
-        new: true,
-        runValidators: true,
-      },
-    ).lean();
+    const update = buildSanitizedUpdate(body);
+
+    const item = await GalleryCategory.findOne({ slug });
     if (!item) return fail("Not found", 404);
+
+    if (typeof update.name === "string") item.name = update.name;
+    if (typeof update.description === "string") {
+      item.description = update.description;
+    }
+
+    applyNestedUpdate(item, update, ["images"]);
+    await item.save();
+
+    const saved = item.toObject();
     revalidateGalleryPage();
-    return ok(item);
+    return ok(saved);
   } catch (err) {
     return fail(err instanceof Error ? err.message : "Save failed", 500);
   }

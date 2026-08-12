@@ -1,7 +1,7 @@
 import { connectDB } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth";
 import { fail, ok, parseJson } from "@/lib/api";
-import { sanitizeMongoUpdate } from "@/lib/sanitizeUpdate";
+import { applyNestedUpdate, buildSanitizedUpdate } from "@/lib/persistCms";
 import { revalidatePublicPage } from "@/lib/revalidateSite";
 import { Page } from "@/models/Page";
 
@@ -30,19 +30,25 @@ export async function PUT(req: Request, ctx: Ctx) {
     const { slug } = await ctx.params;
     await connectDB();
     const body = await parseJson<Record<string, unknown>>(req);
-    const update = sanitizeMongoUpdate(body);
-    delete update.slug;
-    const page = await Page.findOneAndUpdate(
-      { slug },
-      { $set: update },
-      {
-        new: true,
-        runValidators: true,
-      },
-    ).lean();
+    const update = buildSanitizedUpdate(body);
+
+    const page = await Page.findOne({ slug });
     if (!page) return fail("Page not found", 404);
+
+    if (typeof update.title === "string") page.title = update.title;
+    if (typeof update.seoDescription === "string") {
+      page.seoDescription = update.seoDescription;
+    }
+    if (update.status === "published" || update.status === "draft") {
+      page.status = update.status;
+    }
+
+    applyNestedUpdate(page, update, ["sections"]);
+    await page.save();
+
+    const saved = page.toObject();
     revalidatePublicPage(slug);
-    return ok(page);
+    return ok(saved);
   } catch (err) {
     return fail(err instanceof Error ? err.message : "Save failed", 500);
   }

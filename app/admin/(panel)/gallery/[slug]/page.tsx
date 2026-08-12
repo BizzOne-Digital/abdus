@@ -77,10 +77,15 @@ export default function AdminGalleryEditorPage() {
     setBusy(true);
     setMessage("");
     try {
+      const payload = {
+        name: item.name,
+        description: item.description || "",
+        images: item.images,
+      };
       const res = await fetch(`/api/gallery/${slug}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(item),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Save failed");

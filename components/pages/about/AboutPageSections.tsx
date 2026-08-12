@@ -86,7 +86,12 @@ export function AboutPageSections({ story, timeline, values, quote }: Props) {
     image: story?.image || DEFAULT_STORY.image,
   };
 
-  const milestones = DEFAULT_TIMELINE;
+  const milestones = timeline?.items?.length
+    ? timeline.items.map((item) => ({
+        year: item.title || "",
+        body: item.body || "",
+      }))
+    : DEFAULT_TIMELINE;
 
   const valueCards = (values?.items?.length ? values.items : DEFAULT_VALUES).map(
     (item, i) => ({

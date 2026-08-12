@@ -2,6 +2,7 @@ import { revalidatePath } from "next/cache";
 
 /** Bust static cache after CMS writes so the public site shows fresh content. */
 export function revalidatePublicPage(slug: string) {
+  revalidatePath("/", "layout");
   if (slug === "home") {
     revalidatePath("/");
   } else {
@@ -21,6 +22,8 @@ export function revalidatePriorityDetail(slug: string) {
 
 export function revalidateSiteSettings() {
   revalidatePath("/", "layout");
+  revalidatePath("/contact");
+  revalidatePath("/donate");
 }
 
 export function revalidateGalleryPage() {

@@ -6,7 +6,7 @@ import { DonateQR } from "@/components/DonateQR";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import "./donate-page.css";
 
-const STEPS = [
+const BASE_STEPS = [
   {
     num: "1",
     title: "Open your banking app",
@@ -15,18 +15,21 @@ const STEPS = [
   {
     num: "2",
     title: "Send to this email",
-    body: "Vote4shinwary@gmail.com",
+    body: "",
   },
   {
     num: "3",
     title: "Add a short note",
-    body: "Optional: your name and “Ward 1 campaign”.",
+    body: 'Optional: your name and "Ward 1 campaign".',
   },
 ];
 
-export function DonatePageContent() {
+export function DonatePageContent({ email }: { email: string }) {
   const reduced = usePrefersReducedMotion();
   const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
+  const steps = BASE_STEPS.map((step, i) =>
+    i === 1 ? { ...step, body: email } : step,
+  );
 
   return (
     <div className="donate-page">
@@ -80,11 +83,11 @@ export function DonatePageContent() {
             </h2>
             <p className="donate-etransfer__email">
               <span>Send to</span>
-              <a href="mailto:Vote4shinwary@gmail.com">Vote4shinwary@gmail.com</a>
+              <a href={`mailto:${email}`}>{email}</a>
             </p>
 
             <ol className="donate-steps">
-              {STEPS.map((step, i) => (
+              {steps.map((step, i) => (
                 <motion.li
                   key={step.num}
                   initial={reduced ? false : { opacity: 0, x: 14 }}
@@ -103,10 +106,10 @@ export function DonatePageContent() {
 
             <div className="donate-etransfer__actions">
               <a
-                href="mailto:Vote4shinwary@gmail.com?subject=Campaign%20donation"
+                href={`mailto:${email}?subject=Campaign%20donation`}
                 className="btn btn--primary btn--pill"
               >
-                Email Vote4shinwary@gmail.com
+                Email {email}
               </a>
               <Link href="/contact" className="btn btn--ghost-dark btn--pill">
                 Other ways to help

@@ -1,7 +1,7 @@
 import { connectDB } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth";
 import { fail, ok, parseJson } from "@/lib/api";
-import { sanitizeMongoUpdate } from "@/lib/sanitizeUpdate";
+import { applyNestedUpdate, buildSanitizedUpdate } from "@/lib/persistCms";
 import { revalidateSiteSettings } from "@/lib/revalidateSite";
 import { Settings } from "@/models/Settings";
 
@@ -27,19 +27,36 @@ export async function PUT(req: Request) {
   try {
     await connectDB();
     const body = await parseJson<Record<string, unknown>>(req);
-    const update = sanitizeMongoUpdate(body);
+    const update = buildSanitizedUpdate(body);
     delete update.key;
-    const settings = await Settings.findOneAndUpdate(
-      { key: "site" },
-      { $set: update },
-      {
-        new: true,
-        upsert: true,
-        runValidators: true,
-      },
-    ).lean();
+
+    let settings = await Settings.findOne({ key: "site" });
+    if (!settings) {
+      settings = await Settings.create({ key: "site" });
+    }
+
+    const allowed = [
+      "email",
+      "phone",
+      "address",
+      "facebook",
+      "instagram",
+      "twitter",
+      "youtube",
+      "logo",
+      "siteName",
+      "tagline",
+    ] as const;
+
+    for (const field of allowed) {
+      if (typeof update[field] === "string") {
+        settings.set(field, update[field]);
+      }
+    }
+
+    await settings.save();
     revalidateSiteSettings();
-    return ok(settings);
+    return ok(settings.toObject());
   } catch (err) {
     return fail(err instanceof Error ? err.message : "Save failed", 500);
   }

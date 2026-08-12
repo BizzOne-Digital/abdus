@@ -2,10 +2,13 @@ import { PageHero } from "@/components/home/PageHero";
 import { accentLastWord } from "@/lib/accentTitle";
 import { Ward1Section } from "@/components/home/Ward1Section";
 import { CommitmentStrip } from "@/components/home/CommitmentStrip";
-import { getCmsPage, sectionByKey } from "@/lib/cms";
+import { getCmsPage, getCmsSettings, sectionByKey } from "@/lib/cms";
 
 export default async function Ward1Page() {
-  const page = await getCmsPage("ward-1");
+  const [page, settings] = await Promise.all([
+    getCmsPage("ward-1"),
+    getCmsSettings(),
+  ]);
   const sections = page?.sections || [];
   const hero = sectionByKey(sections, "hero");
 
@@ -23,7 +26,10 @@ export default async function Ward1Page() {
         ctaLabel={hero?.buttonLabel || "Donate"}
       />
       <Ward1Section data={sectionByKey(sections, "ward1")} />
-      <CommitmentStrip />
+      <CommitmentStrip
+        data={sectionByKey(sections, "commitment")}
+        email={settings.email}
+      />
     </>
   );
 }

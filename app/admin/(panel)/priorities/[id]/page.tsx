@@ -38,10 +38,18 @@ export default function AdminPriorityEditor() {
 
   async function save() {
     if (!item) return;
+    const payload = {
+      title: item.title,
+      slug: item.slug,
+      shortDescription: item.shortDescription,
+      cardImage: item.cardImage,
+      published: item.published,
+      detailSections: item.detailSections,
+    };
     const res = await fetch(`/api/priorities/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(item),
+      body: JSON.stringify(payload),
     });
     const data = await res.json();
     if (!res.ok) {

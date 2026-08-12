@@ -402,6 +402,10 @@ function SlideMeet({
       "Environmental Management",
       "Community Leadership",
     ];
+  const title = data?.title || "Elect Shinwary";
+  const titleParts = title.trim().split(/\s+/);
+  const titleFirst = titleParts[0] || "Elect";
+  const titleRest = titleParts.slice(1).join(" ") || "Shinwary";
 
   return (
     <div className="hero-grid hero-grid--meet">
@@ -416,8 +420,8 @@ function SlideMeet({
           <MapleLeaf />
         </motion.p>
         <motion.h2 className="hero-title hero-title--alt" variants={staggerChild}>
-          <span className="hero-title__line">Elect</span>
-          <span className="hero-title__line accent">Shinwary</span>
+          <span className="hero-title__line">{titleFirst}</span>
+          <span className="hero-title__line accent">{titleRest}</span>
         </motion.h2>
         <motion.p className="hero-support" variants={staggerChild}>
           {data?.body ||

@@ -2,17 +2,20 @@ import { HeroCarousel } from "@/components/home/HeroCarousel";
 import { MeetSection } from "@/components/home/MeetSection";
 import { CommunitySection } from "@/components/home/CommunitySection";
 import { Ward1Section } from "@/components/home/Ward1Section";
+import { CommitmentSection } from "@/components/home/CommitmentSection";
 import { CommitmentStrip } from "@/components/home/CommitmentStrip";
 import {
   getCmsPage,
   getCmsPriorities,
+  getCmsSettings,
   sectionByKey,
 } from "@/lib/cms";
 
 export default async function HomePage() {
-  const [page, priorities] = await Promise.all([
+  const [page, priorities, settings] = await Promise.all([
     getCmsPage("home"),
     getCmsPriorities(),
+    getCmsSettings(),
   ]);
   const sections = page?.sections || [];
 
@@ -33,7 +36,11 @@ export default async function HomePage() {
         advocacy={sectionByKey(sections, "advocacy")}
       />
       <Ward1Section data={sectionByKey(sections, "ward1")} />
-      <CommitmentStrip />
+      <CommitmentSection data={sectionByKey(sections, "commitment")} />
+      <CommitmentStrip
+        data={sectionByKey(sections, "closing")}
+        email={settings.email}
+      />
     </>
   );
 }

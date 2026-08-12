@@ -19,7 +19,7 @@ export default async function ContactPage() {
   const hero = sectionByKey(sections, "hero");
   const details = sectionByKey(sections, "details");
   const involve = sectionByKey(sections, "involve");
-  const email = "Vote4shinwary@gmail.com";
+  const email = settings.email || "Vote4shinwary@gmail.com";
   const phone = settings.phone || "416 419 2457";
   const tel = String(phone).replace(/\s/g, "");
 
@@ -87,7 +87,10 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      <CommitmentStrip />
+      <CommitmentStrip
+        data={sectionByKey(sections, "closing")}
+        email={settings.email}
+      />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { connectDB } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth";
 import { fail, ok, parseJson } from "@/lib/api";
-import { sanitizeMongoUpdate } from "@/lib/sanitizeUpdate";
+import { applyNestedUpdate, buildSanitizedUpdate } from "@/lib/persistCms";
 import { revalidatePriorityDetail } from "@/lib/revalidateSite";
 import { Priority } from "@/models/Priority";
 
@@ -30,19 +30,27 @@ export async function PUT(req: Request, ctx: Ctx) {
     const { id } = await ctx.params;
     await connectDB();
     const body = await parseJson<Record<string, unknown>>(req);
-    const update = sanitizeMongoUpdate(body);
-    const item = await Priority.findByIdAndUpdate(
-      id,
-      { $set: update },
-      {
-        new: true,
-        runValidators: true,
-      },
-    ).lean();
+    const update = buildSanitizedUpdate(body);
+
+    const item = await Priority.findById(id);
     if (!item) return fail("Not found", 404);
-    const saved = item as { slug?: string };
+
+    if (typeof update.title === "string") item.title = update.title;
+    if (typeof update.slug === "string") item.slug = update.slug;
+    if (typeof update.shortDescription === "string") {
+      item.shortDescription = update.shortDescription;
+    }
+    if (typeof update.cardImage === "string") item.cardImage = update.cardImage;
+    if (typeof update.icon === "string") item.icon = update.icon;
+    if (typeof update.order === "number") item.order = update.order;
+    if (typeof update.published === "boolean") item.published = update.published;
+
+    applyNestedUpdate(item, update, ["detailSections"]);
+    await item.save();
+
+    const saved = item.toObject();
     revalidatePriorityDetail(String(saved.slug || ""));
-    return ok(item);
+    return ok(saved);
   } catch (err) {
     return fail(err instanceof Error ? err.message : "Save failed", 500);
   }

@@ -3,12 +3,29 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { DonateQR } from "@/components/DonateQR";
+import { accentLastWord } from "@/lib/accentTitle";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import type { CmsSection } from "@/lib/cms";
 import "./DonateQR.css";
 import "./CommitmentStrip.css";
 
-export function CommitmentStrip() {
+type Props = {
+  data?: CmsSection;
+  email?: string;
+};
+
+export function CommitmentStrip({
+  data,
+  email = "Vote4shinwary@gmail.com",
+}: Props) {
   const reduced = usePrefersReducedMotion();
+  const eyebrow = data?.subtitle || "The commitment";
+  const title = data?.title || "Your voice at City Hall";
+  const lead =
+    data?.body ||
+    "Shinwary is committed to taking your concerns to council — and reporting back every month.";
+  const primaryHref = data?.buttonLink || "/contact";
+  const primaryLabel = data?.buttonLabel || "Get Involved";
 
   return (
     <section className="section commit-strip" aria-labelledby="commit-title">
@@ -20,17 +37,14 @@ export function CommitmentStrip() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="section__eyebrow">The commitment</p>
+          <p className="section__eyebrow">{eyebrow}</p>
           <h2 id="commit-title" className="section__title">
-            Your voice at <span className="accent">City Hall</span>
+            {accentLastWord(title)}
           </h2>
-          <p className="section__lead section__lead--wide">
-            Shinwary is committed to taking your concerns to council — and
-            reporting back every month.
-          </p>
+          <p className="section__lead section__lead--wide">{lead}</p>
           <div className="commit-strip__actions">
-            <Link href="/contact" className="btn btn--primary btn--pill">
-              Get Involved
+            <Link href={primaryHref} className="btn btn--primary btn--pill">
+              {primaryLabel}
             </Link>
             <Link href="/donate" className="btn btn--ghost-dark btn--pill">
               Donate
@@ -47,7 +61,7 @@ export function CommitmentStrip() {
         >
           <DonateQR size={128} label="Scan to donate" />
           <p className="commit-strip__email">
-            e-Transfer: <strong>Vote4shinwary@gmail.com</strong>
+            e-Transfer: <strong>{email}</strong>
           </p>
         </motion.div>
       </div>

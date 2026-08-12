@@ -94,15 +94,20 @@ export default function AdminPageEditor() {
     setBusy(true);
     setMessage("");
     try {
+      const payload = {
+        title: page.title,
+        seoDescription: page.seoDescription || "",
+        sections: page.sections,
+      };
       const res = await fetch(`/api/pages/${slug}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(page),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Save failed");
       setPage(data);
-      setMessage("Saved. Frontend now uses this content.");
+      setMessage("Saved. Refresh the live page (Ctrl+F5) to see your changes.");
     } catch (err) {
       setMessage(err instanceof Error ? err.message : "Save failed");
     } finally {

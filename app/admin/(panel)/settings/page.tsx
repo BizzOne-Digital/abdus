@@ -40,7 +40,7 @@ export default function AdminSettingsPage() {
       return;
     }
     setSettings(data);
-    setMessage("Saved. Footer and contact page will use these values.");
+    setMessage("Saved. Refresh the site (Ctrl+F5) — footer and contact pages update too.");
   }
 
   if (!settings) return <p>Loading…</p>;

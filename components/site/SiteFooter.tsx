@@ -33,7 +33,7 @@ const NAV = [
 
 export async function SiteFooter() {
   const settings = await getSettings();
-  const email = "Vote4shinwary@gmail.com";
+  const email = settings.email || "Vote4shinwary@gmail.com";
   const year = new Date().getFullYear();
 
   return (
