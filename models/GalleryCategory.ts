@@ -2,7 +2,9 @@ import mongoose, { Schema, models, model } from "mongoose";
 
 const GalleryImageSchema = new Schema(
   {
+    type: { type: String, enum: ["image", "video"], default: "image" },
     url: { type: String, required: true },
+    thumbnail: { type: String, default: "" },
     alt: { type: String, default: "" },
     caption: { type: String, default: "" },
     order: { type: Number, default: 0 },

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { resolveMediaUrl } from "@/lib/mediaUrl";
 import type { CmsSection } from "@/lib/cms";
 import "./CommunitySection.css";
 
@@ -44,7 +45,7 @@ export function CommunitySection({ community, advocacy }: Props) {
 
   const gallery = community?.items?.length
     ? community.items.map((item, i) => ({
-        src: item.image || DEFAULT_GALLERY[i % 3].src,
+        src: resolveMediaUrl(item.image || DEFAULT_GALLERY[i % 3].src),
         alt: item.title || "Community",
         label: item.title || "Community",
         caption: item.body || "",

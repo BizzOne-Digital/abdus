@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/db";
 import { Page } from "@/models/Page";
 import { Priority } from "@/models/Priority";
 import { Settings } from "@/models/Settings";
+import { GalleryCategory } from "@/models/GalleryCategory";
 
 export type CmsSection = {
   key: string;
@@ -56,4 +57,26 @@ export async function getCmsSettings() {
       tagline: "Strong leadership. Better Oshawa.",
     }
   );
+}
+
+export type GalleryMedia = {
+  type?: "image" | "video";
+  url: string;
+  thumbnail?: string;
+  alt?: string;
+  caption?: string;
+  order?: number;
+};
+
+export type GalleryCategoryDoc = {
+  name: string;
+  slug: string;
+  description?: string;
+  images: GalleryMedia[];
+};
+
+export async function getGalleryCategories(): Promise<GalleryCategoryDoc[]> {
+  await connectDB();
+  const items = await GalleryCategory.find().sort({ name: 1 }).lean();
+  return JSON.parse(JSON.stringify(items));
 }

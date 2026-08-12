@@ -78,6 +78,7 @@ export default function AdminSettingsPage() {
         </label>
         <ImageUploader
           label="Logo"
+          folder="misc"
           value={settings.logo || ""}
           onChange={(url) => setSettings({ ...settings, logo: url })}
         />

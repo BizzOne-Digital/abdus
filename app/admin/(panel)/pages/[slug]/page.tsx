@@ -43,9 +43,15 @@ export default function AdminPageEditor() {
 
   useEffect(() => {
     fetch(`/api/pages/${slug}`)
-      .then((r) => r.json())
-      .then(setPage)
-      .catch(() => setPage(null));
+      .then(async (r) => {
+        const data = await r.json();
+        if (!r.ok) throw new Error(data.error || "Failed to load page");
+        setPage(data);
+      })
+      .catch((err) => {
+        setPage(null);
+        setMessage(err instanceof Error ? err.message : "Failed to load page");
+      });
   }, [slug]);
 
   function updateSection(index: number, patch: Partial<Section>) {
@@ -196,6 +202,7 @@ export default function AdminPageEditor() {
           </label>
           <ImageUploader
             label="Section image"
+            folder="pages"
             value={section.image || ""}
             onChange={(url) => updateSection(index, { image: url })}
           />
@@ -266,6 +273,7 @@ export default function AdminPageEditor() {
                   </label>
                   <ImageUploader
                     label="Item image"
+                    folder="pages"
                     value={item.image || ""}
                     onChange={(url) =>
                       updateItem(index, itemIndex, { image: url })

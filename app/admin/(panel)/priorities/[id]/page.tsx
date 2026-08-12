@@ -117,6 +117,7 @@ export default function AdminPriorityEditor() {
           </label>
           <ImageUploader
             label="Card image (Vision/priorities listing)"
+            folder="pages"
             value={item.cardImage || ""}
             onChange={(url) => setItem({ ...item, cardImage: url })}
           />
@@ -156,6 +157,7 @@ export default function AdminPriorityEditor() {
               </label>
               <ImageUploader
                 label="Section image"
+                folder="pages"
                 value={section.image || ""}
                 onChange={(url) => {
                   const detailSections = [...item.detailSections];

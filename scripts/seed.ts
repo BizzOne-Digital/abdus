@@ -6,6 +6,7 @@ import { AdminUser } from "../models/AdminUser";
 import { Page } from "../models/Page";
 import { Priority } from "../models/Priority";
 import { Settings } from "../models/Settings";
+import { GalleryCategory } from "../models/GalleryCategory";
 
 async function seed() {
   await connectDB();
@@ -648,7 +649,53 @@ async function seed() {
     });
   }
 
-  await Page.deleteMany({ slug: { $in: ["gallery", "testimonials", "faqs"] } });
+  await GalleryCategory.deleteMany({});
+  await GalleryCategory.insertMany([
+    {
+      name: "Community Events",
+      slug: "events",
+      description: "Celebrating neighbours and local traditions across Ward 1.",
+      images: [
+        {
+          type: "image",
+          url: "/images/community-1.jpg",
+          alt: "Community event",
+          caption: "Celebrating neighbours and local traditions.",
+          order: 0,
+        },
+        {
+          type: "image",
+          url: "/images/community-2.jpg",
+          alt: "Collaboration meeting",
+          caption: "Listening and working with partners.",
+          order: 1,
+        },
+      ],
+    },
+    {
+      name: "On the Campaign Trail",
+      slug: "campaign",
+      description: "Door knocks, meetings, and Ward 1 outreach.",
+      images: [
+        {
+          type: "image",
+          url: "/images/community-3.jpg",
+          alt: "Local advocacy",
+          caption: "Turning conversations into advocacy.",
+          order: 0,
+        },
+        {
+          type: "image",
+          url: "/images/candidate-podium.jpg",
+          alt: "Candidate speaking",
+          caption: "Sharing a practical plan for Ward 1.",
+          order: 1,
+        },
+      ],
+    },
+  ]);
+
+  await Page.deleteMany({ slug: { $in: ["testimonials", "faqs"] } });
 
   console.log("Seed complete — admin content matches the live site.");
   console.log(`Admin login: ${email} / ${password}`);

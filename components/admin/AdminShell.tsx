@@ -8,6 +8,7 @@ import "./admin.css";
 const NAV: { href: string; label: string; exact?: boolean }[] = [
   { href: "/admin", label: "Dashboard", exact: true },
   { href: "/admin/pages", label: "Pages" },
+  { href: "/admin/gallery", label: "Gallery" },
   { href: "/admin/priorities", label: "Services" },
   { href: "/admin/settings", label: "Settings" },
 ];
