@@ -42,21 +42,6 @@ export function GalleryPageContent({ categories }: Props) {
   return (
     <section className="inner-section gallery-page">
       <div className="container">
-        <motion.div
-          className="gallery-page__intro"
-          initial={reduced ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-        >
-          <p className="section__eyebrow">Gallery</p>
-          <h2 className="section__title">
-            Photos &amp; <span className="accent">Videos</span>
-          </h2>
-          <p className="section__lead section__lead--wide">
-            Campaign moments, community events, and Ward 1 in action.
-          </p>
-        </motion.div>
-
         {!hasMedia ? (
           <p className="gallery-page__empty">Gallery content coming soon.</p>
         ) : (

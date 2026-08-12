@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth";
 import { fail, ok, parseJson } from "@/lib/api";
 import { sanitizeMongoUpdate } from "@/lib/sanitizeUpdate";
+import { revalidateSiteSettings } from "@/lib/revalidateSite";
 import { Settings } from "@/models/Settings";
 
 export async function GET() {
@@ -27,11 +28,17 @@ export async function PUT(req: Request) {
     await connectDB();
     const body = await parseJson<Record<string, unknown>>(req);
     const update = sanitizeMongoUpdate(body);
-    const settings = await Settings.findOneAndUpdate({ key: "site" }, update, {
-      new: true,
-      upsert: true,
-      runValidators: true,
-    }).lean();
+    delete update.key;
+    const settings = await Settings.findOneAndUpdate(
+      { key: "site" },
+      { $set: update },
+      {
+        new: true,
+        upsert: true,
+        runValidators: true,
+      },
+    ).lean();
+    revalidateSiteSettings();
     return ok(settings);
   } catch (err) {
     return fail(err instanceof Error ? err.message : "Save failed", 500);

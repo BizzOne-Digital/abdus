@@ -15,9 +15,9 @@ export function MeetSection({ meet, quote }: Props) {
   const reduced = usePrefersReducedMotion();
   const kicker = meet?.subtitle || "Meet Shinwary";
   const title = meet?.title || "Experience that serves.";
-  const INTRO_COPY =
+  const intro =
+    meet?.body ||
     "Shinwary rebuilt his life in Canada through hard work and education. That journey shaped a practical leader.";
-  const intro = INTRO_COPY;
   const photo = meet?.image || "/images/candidate-podium.jpg";
   const years = quote?.title || "15+";
   const yearsLabel = quote?.subtitle || "Years";

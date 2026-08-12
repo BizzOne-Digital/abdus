@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth";
 import { fail, ok, parseJson } from "@/lib/api";
 import { sanitizeMongoUpdate } from "@/lib/sanitizeUpdate";
+import { revalidateGalleryPage } from "@/lib/revalidateSite";
 import { GalleryCategory } from "@/models/GalleryCategory";
 
 type Ctx = { params: Promise<{ slug: string }> };
@@ -30,11 +31,17 @@ export async function PUT(req: Request, ctx: Ctx) {
     await connectDB();
     const body = await parseJson<Record<string, unknown>>(req);
     const update = sanitizeMongoUpdate(body);
-    const item = await GalleryCategory.findOneAndUpdate({ slug }, update, {
-      new: true,
-      runValidators: true,
-    }).lean();
+    delete update.slug;
+    const item = await GalleryCategory.findOneAndUpdate(
+      { slug },
+      { $set: update },
+      {
+        new: true,
+        runValidators: true,
+      },
+    ).lean();
     if (!item) return fail("Not found", 404);
+    revalidateGalleryPage();
     return ok(item);
   } catch (err) {
     return fail(err instanceof Error ? err.message : "Save failed", 500);

@@ -2,6 +2,8 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import "./site.css";
 
+export const dynamic = "force-dynamic";
+
 export default function SiteLayout({
   children,
 }: {

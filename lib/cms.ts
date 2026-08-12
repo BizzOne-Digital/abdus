@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { connectDB } from "@/lib/db";
 import { Page } from "@/models/Page";
 import { Priority } from "@/models/Priority";
@@ -31,6 +32,7 @@ export function sectionByKey(
 }
 
 export async function getCmsPage(slug: string): Promise<CmsPage | null> {
+  noStore();
   await connectDB();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const page: any = await Page.findOne({ slug }).lean();
@@ -39,12 +41,14 @@ export async function getCmsPage(slug: string): Promise<CmsPage | null> {
 }
 
 export async function getCmsPriorities() {
+  noStore();
   await connectDB();
   const items = await Priority.find({ published: true }).sort({ order: 1 }).lean();
   return JSON.parse(JSON.stringify(items));
 }
 
 export async function getCmsSettings() {
+  noStore();
   await connectDB();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const settings: any = await Settings.findOne({ key: "site" }).lean();
@@ -76,6 +80,7 @@ export type GalleryCategoryDoc = {
 };
 
 export async function getGalleryCategories(): Promise<GalleryCategoryDoc[]> {
+  noStore();
   await connectDB();
   const items = await GalleryCategory.find().sort({ name: 1 }).lean();
   return JSON.parse(JSON.stringify(items));

@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth";
 import { fail, ok, parseJson } from "@/lib/api";
 import { sanitizeMongoUpdate } from "@/lib/sanitizeUpdate";
+import { revalidatePublicPage } from "@/lib/revalidateSite";
 import { Page } from "@/models/Page";
 
 type Ctx = { params: Promise<{ slug: string }> };
@@ -30,11 +31,17 @@ export async function PUT(req: Request, ctx: Ctx) {
     await connectDB();
     const body = await parseJson<Record<string, unknown>>(req);
     const update = sanitizeMongoUpdate(body);
-    const page = await Page.findOneAndUpdate({ slug }, update, {
-      new: true,
-      runValidators: true,
-    }).lean();
+    delete update.slug;
+    const page = await Page.findOneAndUpdate(
+      { slug },
+      { $set: update },
+      {
+        new: true,
+        runValidators: true,
+      },
+    ).lean();
     if (!page) return fail("Page not found", 404);
+    revalidatePublicPage(slug);
     return ok(page);
   } catch (err) {
     return fail(err instanceof Error ? err.message : "Save failed", 500);

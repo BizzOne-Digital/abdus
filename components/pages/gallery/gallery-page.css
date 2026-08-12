@@ -1,7 +1,3 @@
-.gallery-page__intro {
-  margin-bottom: clamp(2rem, 5vw, 3rem);
-}
-
 .gallery-page__empty {
   color: #64748b;
   font-size: 1.05rem;
