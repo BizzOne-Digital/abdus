@@ -29,15 +29,15 @@ const DEFAULT_STORY = {
 const DEFAULT_TIMELINE = [
   {
     year: "2010",
-    body: "Began working with local government agencies on community development projects.",
+    body: "Began working with local government agencies on community development projects.\n\n- Designed settlement strategies to strengthen newcomer integration.\n- Facilitated employment pathways through targeted referrals.\n- Connected families with mental-health supports and essential services.\n- Developed community ambassador initiatives to improve service navigation.",
   },
   {
     year: "2015",
-    body: "Led multiple infrastructure and budget transparency initiatives in Oshawa.",
+    body: "Infrastructure, Budgeting & Accountability\n- Coordinated municipal infrastructure through technical planning and oversight.\n- Assessed culverts and bridges for safer, more reliable roads.\n- Built budget tracking frameworks for transparency and accountability.\n- Designed energy-management plans to reduce consumption in First Nations communities.",
   },
   {
     year: "2019",
-    body: "Recognized for outstanding community service and resident advocacy in Ward 1.",
+    body: "Community Advocacy in Ward 1\n- Advocated for Conlin Road improvements through resident engagement and agency coordination.\n- Supported safer school busing by raising family concerns with education partners.\n- Promoted better green space by bringing neighbourhood needs to decision-makers.\n- Advanced local priorities through direct collaboration with residents and public agencies.",
   },
   {
     year: "2023",
@@ -45,9 +45,37 @@ const DEFAULT_TIMELINE = [
   },
   {
     year: "2026",
-    body: "Running for Ward 1 Councillor. Election Day is October 26, 2026.",
+    body: "Ready to Serve Ward 1\n- Running for Oshawa Ward 1 Councillor in 2026.\n- Visible, accessible, and present year-round.\n- Committed to accountability, responsible spending, and follow-through.\n- Election Day: October 26, 2026.",
   },
 ];
+
+function parseTimelineBody(body: string) {
+  const lines = body.split("\n").map((line) => line.trim()).filter(Boolean);
+  const intro: string[] = [];
+  const bullets: string[] = [];
+
+  for (const line of lines) {
+    const bulletMatch = line.match(/^\.?[-•]\s*(.+)$/);
+    if (bulletMatch) {
+      bullets.push(bulletMatch[1]);
+    } else if (bullets.length === 0) {
+      intro.push(line);
+    } else {
+      bullets.push(line);
+    }
+  }
+
+  return { intro: intro.join("\n"), bullets };
+}
+
+function isTopicHeading(intro: string, bullets: string[]) {
+  return (
+    bullets.length > 0 &&
+    intro.length > 0 &&
+    intro.length <= 80 &&
+    !/[.!?]$/.test(intro.trim())
+  );
+}
 
 const DEFAULT_VALUES = [
   {
@@ -164,16 +192,38 @@ export function AboutPageSections({ story, timeline, values, quote }: Props) {
           />
 
           <ol className="about-track__list">
-            {milestones.map((item, i) => (
-              <motion.li
-                key={item.year + i}
-                className="about-track__item"
-                {...fadeUp(i * 0.06)}
-              >
-                <span className="about-track__year">{item.year}</span>
-                <p className="about-track__text">{item.body}</p>
-              </motion.li>
-            ))}
+            {milestones.map((item, i) => {
+              const { intro, bullets } = parseTimelineBody(item.body);
+              const hasBullets = bullets.length > 0;
+
+              return (
+                <motion.li
+                  key={item.year + i}
+                  className={`about-track__item${hasBullets ? " about-track__item--stacked" : ""}`}
+                  {...fadeUp(i * 0.06)}
+                >
+                  <span className="about-track__year">{item.year}</span>
+                  <div className="about-track__content">
+                    {intro ? (
+                      isTopicHeading(intro, bullets) ? (
+                        <p className="about-track__topic">{intro}</p>
+                      ) : (
+                        <p className="about-track__text">{intro}</p>
+                      )
+                    ) : null}
+                    {hasBullets ? (
+                      <ul className="about-track__bullets">
+                        {bullets.map((bullet) => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      !intro && <p className="about-track__text">{item.body}</p>
+                    )}
+                  </div>
+                </motion.li>
+              );
+            })}
           </ol>
         </div>
       </section>

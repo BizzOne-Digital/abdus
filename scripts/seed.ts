@@ -252,15 +252,15 @@ async function seed() {
           items: [
             {
               title: "2010",
-              body: "Began working with local government agencies on community development projects.",
+              body: "Began working with local government agencies on community development projects.\n\n- Designed settlement strategies to strengthen newcomer integration.\n- Facilitated employment pathways through targeted referrals.\n- Connected families with mental-health supports and essential services.\n- Developed community ambassador initiatives to improve service navigation.",
             },
             {
               title: "2015",
-              body: "Led multiple infrastructure and budget transparency initiatives in Oshawa.",
+              body: "Infrastructure, Budgeting & Accountability\n- Coordinated municipal infrastructure through technical planning and oversight.\n- Assessed culverts and bridges for safer, more reliable roads.\n- Built budget tracking frameworks for transparency and accountability.\n- Designed energy-management plans to reduce consumption in First Nations communities.",
             },
             {
               title: "2019",
-              body: "Recognized for outstanding community service and resident advocacy in Ward 1.",
+              body: "Community Advocacy in Ward 1\n- Advocated for Conlin Road improvements through resident engagement and agency coordination.\n- Supported safer school busing by raising family concerns with education partners.\n- Promoted better green space by bringing neighbourhood needs to decision-makers.\n- Advanced local priorities through direct collaboration with residents and public agencies.",
             },
             {
               title: "2023",
@@ -268,7 +268,7 @@ async function seed() {
             },
             {
               title: "2026",
-              body: "Running for Ward 1 Councillor. Election Day is October 26, 2026.",
+              body: "Ready to Serve Ward 1\n- Running for Oshawa Ward 1 Councillor in 2026.\n- Visible, accessible, and present year-round.\n- Committed to accountability, responsible spending, and follow-through.\n- Election Day: October 26, 2026.",
             },
           ],
         },

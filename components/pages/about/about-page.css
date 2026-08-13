@@ -105,6 +105,42 @@
   color: #2a3544;
 }
 
+.about-track__content {
+  min-width: 0;
+}
+
+.about-track__topic {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--deep-navy);
+}
+
+.about-track__bullets {
+  margin: 0.65rem 0 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.about-track__bullets li {
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.55;
+  color: #2a3544;
+}
+
+.about-track__bullets li + li {
+  margin-top: 0.35rem;
+}
+
+.about-track__item--stacked {
+  align-items: start;
+}
+
+.about-track__item--stacked .about-track__year {
+  margin-top: 0.15rem;
+}
+
 .about-values__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
