@@ -37,8 +37,7 @@
 }
 
 .about-story__badge-num {
-  font-family: var(--font-display);
-  font-size: 2rem;
+    font-size: 2rem;
   font-weight: 800;
   line-height: 1;
   color: var(--coral);
@@ -90,8 +89,7 @@
   border-radius: 10px;
   background: var(--deep-navy);
   color: var(--coral);
-  font-family: var(--font-display);
-  font-size: 1.2rem;
+    font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1;
@@ -164,7 +162,7 @@
 }
 
 .about-quote__mark {
-  font-family: var(--font-quote);
+  font-family: inherit;
   font-size: clamp(4rem, 10vw, 6rem);
   line-height: 0.6;
   color: var(--coral);
@@ -177,7 +175,7 @@
 }
 
 .about-quote__text p {
-  font-family: var(--font-quote);
+  font-family: inherit;
   font-size: clamp(1.25rem, 2.6vw, 1.65rem);
   line-height: 1.45;
   color: var(--deep-navy);
@@ -186,7 +184,7 @@
 
 .about-quote__text footer {
   margin-top: 1.15rem;
-  font-family: var(--font-display);
+  font-family: inherit;
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.1em;

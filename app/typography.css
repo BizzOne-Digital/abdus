@@ -1,0 +1,73 @@
+/**
+ * Sitewide typography — Playfair Display on every section and element.
+ */
+
+.page-shell,
+.page-shell *,
+.admin-shell,
+.admin-shell *,
+.login-wrap,
+.login-wrap * {
+  font-family: var(--font-family);
+}
+
+/* Body copy — same rhythm in every section */
+.page-shell :is(
+  .section__lead,
+  .section__lead--wide,
+  .inner-section__text,
+  .meet-intro,
+  .meet-quote p,
+  .about-track__text,
+  .about-track__bullets li,
+  .inner-card p,
+  .page-cta-band__text p,
+  .page-hero__lead,
+  .hero-sub,
+  .hero-body,
+  .commitment-card p,
+  .contact-card p,
+  .contact-card li span,
+  .donate-steps p,
+  .donate-guide__bullets li,
+  .gallery-page__desc,
+  .gallery-card__caption,
+  .ward-copy p,
+  .commit-strip__email,
+  .site-footer__tagline,
+  .site-footer__contact li,
+  .site-footer__bottom p
+) {
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Eyebrows / kickers — one style */
+.page-shell :is(
+  .section__eyebrow,
+  .page-hero__eyebrow,
+  .hero-eyebrow,
+  .meet-kicker
+) {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Headings — same family everywhere (size stays per section) */
+.page-shell :is(
+  .section__title,
+  .page-hero__title,
+  .hero-title,
+  .meet-title,
+  .inner-card h3,
+  .page-cta-band__text h3,
+  .about-track__topic,
+  .gallery-page__category
+) {
+  font-family: var(--font-family);
+}

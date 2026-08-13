@@ -13,6 +13,11 @@
   height: clamp(300px, 48vw, 480px);
   z-index: 0;
   background: #e8edf2;
+  font-family: inherit;
+}
+
+.ward-map .leaflet-container {
+  font-family: inherit;
 }
 
 .ward-map--loading {

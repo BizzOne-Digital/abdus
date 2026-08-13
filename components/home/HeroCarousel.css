@@ -270,8 +270,7 @@
   align-items: center;
   gap: 0.5rem;
   color: var(--light-blue);
-  font-family: var(--font-display);
-  font-size: 1rem;
+    font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;

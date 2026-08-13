@@ -12,10 +12,11 @@
   --ivory: #f7f3ea;
   --navy-soft: #0a2348;
 
-  /* Typography — high-contrast Didone serif sitewide */
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-body: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-quote: "Playfair Display", Georgia, "Times New Roman", serif;
+  /* Typography — one serif family sitewide */
+  --font-family: var(--font-playfair), "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: var(--font-family);
+  --font-display: var(--font-family);
+  --font-quote: var(--font-family);
 
   /* Layout */
   --max-width: 1180px;
@@ -47,6 +48,7 @@ html {
   overflow-x: clip;
   width: 100%;
   max-width: 100%;
+  font-family: var(--font-family);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -69,13 +71,20 @@ body {
   width: 100%;
   max-width: 100%;
   overflow-x: clip;
-  font-family: var(--font-body);
+  font-family: inherit;
   font-size: 16px;
   line-height: 1.6;
   color: var(--white);
   background: var(--midnight);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
 }
 
 img {
@@ -90,7 +99,6 @@ a {
 }
 
 button {
-  font-family: inherit;
   cursor: pointer;
   border: none;
   background: none;
@@ -107,7 +115,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-display);
+  font-family: inherit;
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.01em;
@@ -274,7 +282,7 @@ p {
   min-height: 48px;
   padding: 0.75rem 1.45rem;
   border-radius: 14px;
-  font-family: var(--font-display);
+  font-family: inherit;
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -352,7 +360,7 @@ p {
   align-items: center;
   gap: 0.45rem;
   color: var(--light-blue);
-  font-family: var(--font-display);
+  font-family: inherit;
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.14em;

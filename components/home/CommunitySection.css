@@ -67,8 +67,7 @@
 
 .community-shot__label {
   display: block;
-  font-family: var(--font-display);
-  font-size: 0.78rem;
+    font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -88,8 +87,7 @@
 }
 
 .community-advocacy__title {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
+    font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-bottom: 0.85rem;

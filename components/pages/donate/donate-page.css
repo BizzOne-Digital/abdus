@@ -76,8 +76,7 @@
 }
 
 .donate-etransfer__email a {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 3vw, 1.65rem);
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
   font-weight: 700;
   color: var(--royal);
   word-break: break-all;
@@ -105,8 +104,7 @@
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  font-family: var(--font-display);
-  font-weight: 800;
+    font-weight: 800;
   background: var(--deep-navy);
   color: #fff;
 }

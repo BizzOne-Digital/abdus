@@ -105,8 +105,7 @@
 }
 
 .inner-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
+    font-size: 1.1rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -153,8 +152,7 @@
 }
 
 .page-cta-band__text h3 {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+    font-size: clamp(1.25rem, 2.5vw, 1.55rem);
   text-transform: uppercase;
   letter-spacing: 0.03em;
   margin-bottom: 0.3rem;
