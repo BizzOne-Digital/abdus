@@ -40,10 +40,6 @@ const DEFAULT_TIMELINE = [
     body: "Community Advocacy in Ward 1\n- Advocated for Conlin Road improvements through resident engagement and agency coordination.\n- Supported safer school busing by raising family concerns with education partners.\n- Promoted better green space by bringing neighbourhood needs to decision-makers.\n- Advanced local priorities through direct collaboration with residents and public agencies.",
   },
   {
-    year: "2023",
-    body: "Launched grassroots campaign to bring real change to Ward 1 residents.",
-  },
-  {
     year: "2026",
     body: "Ready to Serve Ward 1\n- Running for Oshawa Ward 1 Councillor in 2026.\n- Visible, accessible, and present year-round.\n- Committed to accountability, responsible spending, and follow-through.\n- Election Day: October 26, 2026.",
   },
@@ -79,11 +75,7 @@ function isTopicHeading(intro: string, bullets: string[]) {
 
 const DEFAULT_VALUES = [
   {
-    title: "Service First",
-    body: "Solve problems — don't create them.",
-  },
-  {
-    title: "Accountability",
+    title: "Create Accountability Dashboard",
     body: "Open communication and decisions you can see.",
   },
   {
@@ -93,6 +85,10 @@ const DEFAULT_VALUES = [
   {
     title: "Practical Leadership",
     body: "Budget and project skills that translate to council.",
+  },
+  {
+    title: "Service First",
+    body: "Solve problems — don't create them.",
   },
 ];
 
@@ -136,15 +132,12 @@ export function AboutPageSections({ story, timeline, values, quote }: Props) {
   const years = quote?.title || "15+";
   const yearsLabel = quote?.subtitle || "Years of service";
 
-  const fadeUp = (delay = 0) =>
-    reduced
-      ? {}
-      : {
-          initial: { opacity: 0, y: 28 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true, amount: 0.25 as const },
-          transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-        };
+  const fadeUp = (delay = 0) => ({
+    initial: {},
+    whileInView: {},
+    viewport: { once: true, amount: 0.25 as const },
+    transition: { duration: 0, delay: 0, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+  });
 
   return (
     <>

@@ -13,7 +13,7 @@
   --navy-soft: #0a2348;
 
   /* Typography — one serif family sitewide */
-  --font-family: var(--font-playfair), "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-family: var(--font-noto-serif), "Noto Serif", Georgia, "Times New Roman", serif;
   --font-body: var(--font-family);
   --font-display: var(--font-family);
   --font-quote: var(--font-family);
